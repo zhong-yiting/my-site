@@ -31,6 +31,12 @@ export default function Home() {
       name: '数据库原理与应用',
       description: '学习数据库的基本原理和应用，包括SQL语言、数据库设计等。',
       image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Database%20schema%20and%20SQL%20queries%2C%20modern%20design&image_size=landscape_16_9'
+    },
+    {
+      id: 6,
+      name: '商务分析技术',
+      description: '学习商务数据分析的高级技术和方法，包括统计分析、预测模型等。',
+      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Business%20analysis%20dashboard%20with%20charts%20and%20metrics%2C%20modern%20design&image_size=landscape_16_9'
     }
   ]);
 
@@ -84,7 +90,7 @@ export default function Home() {
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2 text-blue-800">{course.name}</h3>
                   <p className="text-gray-600 mb-4">{course.description}</p>
-                  <a href="#" className="text-blue-600 hover:text-blue-800 font-medium">
+                  <a href={`/course/${course.id}`} className="text-blue-600 hover:text-blue-800 font-medium">
                     查看详情 →
                   </a>
                 </div>
