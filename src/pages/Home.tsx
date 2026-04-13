@@ -67,7 +67,89 @@ export default function Home() {
             <div className="md:ml-8 text-center md:text-left">
               <h1 className="text-3xl md:text-4xl font-bold mb-2">钟依廷</h1>
               <p className="text-xl mb-4">广东科学技术职业学院</p>
-              <p className="text-lg">商学院 · 商务数据分析与应用专业</p>
+              <p className="text-lg mb-6">商学院 · 商务数据分析与应用专业</p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Python</span>
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">数据可视化</span>
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">数据库应用</span>
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">数据分析</span>
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">数据采集</span>
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">供应链分析</span>
+              </div>
+              <p className="text-white mb-4">
+                具有扎实的数据分析基础，熟练掌握Python编程、数据可视化和数据库应用技能，
+                具备较强的问题解决能力和团队协作精神，
+                目标成为一名优秀的商务数据分析专员。
+              </p>
+              <div className="flex space-x-4">
+                <a href="#courses" className="bg-white text-blue-800 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                  查看课程
+                </a>
+                <a href="#projects" className="bg-transparent border-2 border-white text-white px-4 py-2 rounded-lg font-medium hover:bg-white hover:text-blue-800 transition-colors">
+                  项目经验
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 项目经验部分 */}
+      <section id="projects" className="py-16 px-4 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl font-bold text-center mb-12 text-blue-800">项目经验</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-blue-50 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+              <h3 className="text-xl font-bold mb-3 text-blue-800">电商销售数据分析</h3>
+              <p className="text-gray-600 mb-4">
+                使用Python和pandas对电商平台销售数据进行分析，
+                构建数据可视化仪表盘，识别销售趋势和客户行为模式，
+                为营销决策提供数据支持。
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Python</span>
+                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">pandas</span>
+                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">数据可视化</span>
+              </div>
+            </div>
+            <div className="bg-blue-50 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+              <h3 className="text-xl font-bold mb-3 text-blue-800">供应链优化分析</h3>
+              <p className="text-gray-600 mb-4">
+                分析供应链数据，使用库存优化模型计算最优库存水平，
+                识别供应链瓶颈，提出优化建议，
+                预计可降低库存成本15%。
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Excel</span>
+                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">供应链分析</span>
+                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">优化模型</span>
+              </div>
+            </div>
+            <div className="bg-blue-50 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+              <h3 className="text-xl font-bold mb-3 text-blue-800">客户画像构建</h3>
+              <p className="text-gray-600 mb-4">
+                使用SQL从数据库中提取客户数据，
+                进行数据清洗和特征工程，
+                构建客户画像，为精准营销提供支持。
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">SQL</span>
+                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">数据库</span>
+                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">客户分析</span>
+              </div>
+            </div>
+            <div className="bg-blue-50 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+              <h3 className="text-xl font-bold mb-3 text-blue-800">网络数据采集系统</h3>
+              <p className="text-gray-600 mb-4">
+                使用Python和Scrapy框架开发网络爬虫，
+                采集电商平台商品数据，
+                存储到MongoDB数据库，为价格监测提供数据支持。
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Python</span>
+                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Scrapy</span>
+                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">MongoDB</span>
+              </div>
             </div>
           </div>
         </div>
