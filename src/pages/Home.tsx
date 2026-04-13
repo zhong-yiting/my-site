@@ -99,57 +99,166 @@ export default function Home() {
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl font-bold text-center mb-12 text-blue-800">项目经验</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-blue-50 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-              <h3 className="text-xl font-bold mb-3 text-blue-800">电商销售数据分析</h3>
-              <p className="text-gray-600 mb-4">
-                使用Python和pandas对电商平台销售数据进行分析，
-                构建数据可视化仪表盘，识别销售趋势和客户行为模式，
-                为营销决策提供数据支持。
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Python</span>
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">pandas</span>
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">数据可视化</span>
+            <div className="bg-blue-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=E-commerce%20sales%20data%20analysis%20dashboard%2C%20modern%20design&image_size=landscape_16_9" 
+                  alt="电商销售数据分析" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-3 text-blue-800">电商销售数据分析</h3>
+                <p className="text-gray-600 mb-4">
+                  使用Python和pandas对电商平台销售数据进行分析，
+                  构建数据可视化仪表盘，识别销售趋势和客户行为模式，
+                  为营销决策提供数据支持。
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Python</span>
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">pandas</span>
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">数据可视化</span>
+                </div>
               </div>
             </div>
-            <div className="bg-blue-50 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-              <h3 className="text-xl font-bold mb-3 text-blue-800">供应链优化分析</h3>
-              <p className="text-gray-600 mb-4">
-                分析供应链数据，使用库存优化模型计算最优库存水平，
-                识别供应链瓶颈，提出优化建议，
-                预计可降低库存成本15%。
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Excel</span>
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">供应链分析</span>
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">优化模型</span>
+            <div className="bg-blue-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Supply%20chain%20optimization%20analysis%20dashboard%2C%20modern%20design&image_size=landscape_16_9" 
+                  alt="供应链优化分析" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-3 text-blue-800">供应链优化分析</h3>
+                <p className="text-gray-600 mb-4">
+                  分析供应链数据，使用库存优化模型计算最优库存水平，
+                  识别供应链瓶颈，提出优化建议，
+                  预计可降低库存成本15%。
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Excel</span>
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">供应链分析</span>
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">优化模型</span>
+                </div>
               </div>
             </div>
-            <div className="bg-blue-50 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-              <h3 className="text-xl font-bold mb-3 text-blue-800">客户画像构建</h3>
-              <p className="text-gray-600 mb-4">
-                使用SQL从数据库中提取客户数据，
-                进行数据清洗和特征工程，
-                构建客户画像，为精准营销提供支持。
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">SQL</span>
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">数据库</span>
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">客户分析</span>
+            <div className="bg-blue-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Customer%20profile%20analysis%20dashboard%2C%20modern%20design&image_size=landscape_16_9" 
+                  alt="客户画像构建" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-3 text-blue-800">客户画像构建</h3>
+                <p className="text-gray-600 mb-4">
+                  使用SQL从数据库中提取客户数据，
+                  进行数据清洗和特征工程，
+                  构建客户画像，为精准营销提供支持。
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">SQL</span>
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">数据库</span>
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">客户分析</span>
+                </div>
               </div>
             </div>
-            <div className="bg-blue-50 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-              <h3 className="text-xl font-bold mb-3 text-blue-800">网络数据采集系统</h3>
-              <p className="text-gray-600 mb-4">
-                使用Python和Scrapy框架开发网络爬虫，
-                采集电商平台商品数据，
-                存储到MongoDB数据库，为价格监测提供数据支持。
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Python</span>
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Scrapy</span>
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">MongoDB</span>
+            <div className="bg-blue-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Web%20data%20collection%20system%2C%20modern%20design&image_size=landscape_16_9" 
+                  alt="网络数据采集系统" 
+                  className="w-full h-full object-cover"
+                />
               </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-3 text-blue-800">网络数据采集系统</h3>
+                <p className="text-gray-600 mb-4">
+                  使用Python和Scrapy框架开发网络爬虫，
+                  采集电商平台商品数据，
+                  存储到MongoDB数据库，为价格监测提供数据支持。
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Python</span>
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Scrapy</span>
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">MongoDB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 留言板部分 */}
+      <section id="guestbook" className="py-16 px-4 bg-gradient-to-b from-blue-50 to-blue-100">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-3xl font-bold text-center mb-12 text-blue-800">留言板</h2>
+          
+          {/* 留言表单 */}
+          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h3 className="text-xl font-bold mb-4 text-blue-800">留下您的留言</h3>
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+              <div>
+                <label className="block text-gray-700 mb-2">姓名</label>
+                <input 
+                  type="text" 
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="请输入您的姓名"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-2">邮箱</label>
+                <input 
+                  type="email" 
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="请输入您的邮箱"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-2">留言内容</label>
+                <textarea 
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  rows={4}
+                  placeholder="请输入您的留言内容"
+                ></textarea>
+              </div>
+              <button 
+                type="submit"
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                提交留言
+              </button>
+            </form>
+          </div>
+          
+          {/* 留言列表 */}
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold mb-4 text-blue-800">最新留言</h3>
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <div className="flex items-center mb-3">
+                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                  <span className="text-xl font-bold text-blue-600">张</span>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-blue-800">张老师</h4>
+                  <p className="text-sm text-gray-500">2026-04-13</p>
+                </div>
+              </div>
+              <p className="text-gray-600">课程内容很丰富，项目经验展示得很好，继续加油！</p>
+            </div>
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <div className="flex items-center mb-3">
+                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                  <span className="text-xl font-bold text-blue-600">李</span>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-blue-800">李同学</h4>
+                  <p className="text-sm text-gray-500">2026-04-12</p>
+                </div>
+              </div>
+              <p className="text-gray-600">页面设计得很好看，项目经验展示得很清晰！</p>
             </div>
           </div>
         </div>
