@@ -114,8 +114,33 @@ export default function CourseDetail() {
             ]
           }
         ],
-        assessment: '平时作业(40%) + 期末考试(60%)',
-        references: ['Python编程：从入门到实践', 'Python核心编程', 'Python官方文档']
+        assessment: {
+          description: '平时作业(40%) + 期末考试(60%)',
+          details: [
+            '平时作业：每天布置编程练习，内容与当日学习主题相关，要求当天完成并提交',
+            '期末考试：闭卷考试，考察Python基础语法、控制结构、函数、数据结构等核心知识点',
+            '项目实践：完成一个小型应用项目，综合运用所学知识解决实际问题'
+          ],
+          dailyHomework: [
+            '第1周：Python环境搭建练习，编写Hello World程序',
+            '第2周：变量和数据类型练习，编写简单的计算程序',
+            '第3周：控制结构练习，编写条件判断和循环程序',
+            '第4周：函数练习，编写带有不同参数类型的函数',
+            '第5周：数据结构练习，使用列表、字典等解决实际问题',
+            '第6周：文件操作练习，读写文本文件和CSV文件',
+            '第7周：模块与包练习，创建和使用自定义模块',
+            '第8周：综合项目开发，实现一个完整的小型应用'
+          ]
+        },
+        references: {
+          books: ['Python编程：从入门到实践', 'Python核心编程', 'Python官方文档'],
+          selfStudy: [
+            'Python官方教程：https://docs.python.org/zh-cn/3/tutorial/',
+            'Codecademy Python课程：互动式学习平台',
+            'LeetCode Python题目：通过刷题巩固编程技能',
+            'GitHub上的Python项目：学习优秀代码实践'
+          ]
+        }
       }
     },
     {
@@ -223,8 +248,33 @@ export default function CourseDetail() {
             ]
           }
         ],
-        assessment: '平时作业(30%) + 项目实践(40%) + 期末考试(30%)',
-        references: ['Python数据分析', '利用Python进行数据分析', '数据可视化实战']
+        assessment: {
+          description: '平时作业(30%) + 项目实践(40%) + 期末考试(30%)',
+          details: [
+            '平时作业：每天布置数据分析练习，内容与当日学习主题相关，要求当天完成并提交',
+            '项目实践：完成一个完整的数据分析项目，从数据获取、清洗到分析和可视化',
+            '期末考试：闭卷考试，考察数据分析流程、方法和工具使用等核心知识点'
+          ],
+          dailyHomework: [
+            '第1周：数据分析流程练习，分析一个简单的数据集',
+            '第2周：数据获取与存储练习，从不同来源获取数据并存储',
+            '第3周：数据清洗练习，处理缺失值和异常值',
+            '第4周：数据预处理练习，进行特征工程和数据标准化',
+            '第5周：描述性统计分析练习，计算各种统计指标',
+            '第6周：数据可视化练习，使用Matplotlib绘制各种图表',
+            '第7周：高级数据可视化练习，使用Plotly创建交互式图表',
+            '第8周：综合案例分析，完成一个完整的数据分析报告'
+          ]
+        },
+        references: {
+          books: ['Python数据分析', '利用Python进行数据分析', '数据可视化实战'],
+          selfStudy: [
+            'Kaggle平台：参与数据分析竞赛，学习实际项目',
+            'DataCamp：交互式数据分析学习平台',
+            'Towards Data Science：数据分析博客和教程',
+            'Python Data Science Handbook：在线电子书'
+          ]
+        }
       }
     },
     {
@@ -332,8 +382,33 @@ export default function CourseDetail() {
             ]
           }
         ],
-        assessment: '平时作业(20%) + 爬虫项目(40%) + 数据处理实验(20%) + 期末考试(20%)',
-        references: ['Python网络爬虫权威指南', '数据采集与预处理', '网络数据挖掘', 'Python数据分析', 'Web Scraping with Python', 'Data Wrangling with Python']
+        assessment: {
+          description: '平时作业(20%) + 爬虫项目(40%) + 数据处理实验(20%) + 期末考试(20%)',
+          details: [
+            '平时作业：每天布置数据采集和处理练习，内容与当日学习主题相关，要求当天完成并提交',
+            '爬虫项目：完成一个完整的网络爬虫项目，从网站抓取数据并进行处理',
+            '数据处理实验：完成一系列数据处理实验，包括数据清洗、转换和集成'
+          ],
+          dailyHomework: [
+            '第1周：数据采集项目规划练习，设计一个数据采集方案',
+            '第2周：网络爬虫基础练习，使用Requests和BeautifulSoup抓取网页数据',
+            '第3周：高级爬虫练习，使用Selenium和Scrapy抓取动态网页',
+            '第4周：API数据获取练习，从公开API获取数据并解析',
+            '第5周：数据存储练习，将采集的数据存储到文件和数据库',
+            '第6周：数据清洗练习，处理采集到的原始数据',
+            '第7周：数据转换与集成练习，将不同来源的数据进行整合',
+            '第8周：综合项目实践，完成一个完整的数据采集与处理项目'
+          ]
+        },
+        references: {
+          books: ['Python网络爬虫权威指南', '数据采集与预处理', '网络数据挖掘', 'Python数据分析', 'Web Scraping with Python', 'Data Wrangling with Python'],
+          selfStudy: [
+            'Scrapy官方文档：学习Scrapy框架的使用',
+            'Selenium官方文档：学习自动化测试和网页抓取',
+            'OpenAPI规范：了解API设计和使用',
+            'GitHub上的爬虫项目：学习优秀的爬虫实现'
+          ]
+        }
       }
     },
     {
@@ -441,8 +516,33 @@ export default function CourseDetail() {
             ]
           }
         ],
-        assessment: '平时作业(30%) + 案例分析(40%) + 期末考试(30%)',
-        references: ['供应链管理：战略、规划与运营', '供应链数据分析', '物流与供应链管理']
+        assessment: {
+          description: '平时作业(30%) + 案例分析(40%) + 期末考试(30%)',
+          details: [
+            '平时作业：每天布置供应链数据分析练习，内容与当日学习主题相关，要求当天完成并提交',
+            '案例分析：完成一个供应链管理案例分析，运用所学知识解决实际问题',
+            '期末考试：闭卷考试，考察供应链管理概念、分析方法和优化技术等核心知识点'
+          ],
+          dailyHomework: [
+            '第1周：供应链管理概念练习，分析一个企业的供应链结构',
+            '第2周：供应链数据类型练习，收集和整理不同类型的供应链数据',
+            '第3周：供应链绩效指标练习，计算和分析供应链绩效指标',
+            '第4周：需求预测练习，使用不同方法进行需求预测',
+            '第5周：库存优化练习，计算EOQ和安全库存',
+            '第6周：供应商分析练习，评估和选择供应商',
+            '第7周：物流网络优化练习，设计和优化物流网络',
+            '第8周：供应链风险管理练习，识别和评估供应链风险'
+          ]
+        },
+        references: {
+          books: ['供应链管理：战略、规划与运营', '供应链数据分析', '物流与供应链管理'],
+          selfStudy: [
+            'APICS供应链管理知识体系：学习供应链管理专业知识',
+            'MIT OpenCourseWare：供应链管理相关课程',
+            'Supply Chain Management Review：供应链管理专业杂志',
+            '真实企业供应链案例：分析实际企业的供应链管理实践'
+          ]
+        }
       }
     },
     {
@@ -550,8 +650,33 @@ export default function CourseDetail() {
             ]
           }
         ],
-        assessment: '平时作业(30%) + 数据库设计(30%) + 期末考试(40%)',
-        references: ['数据库系统概论', 'SQL必知必会', 'NoSQL精粹']
+        assessment: {
+          description: '平时作业(30%) + 数据库设计(30%) + 期末考试(40%)',
+          details: [
+            '平时作业：每天布置数据库练习，内容与当日学习主题相关，要求当天完成并提交',
+            '数据库设计：完成一个完整的数据库设计项目，包括需求分析、ER图设计和SQL实现',
+            '期末考试：闭卷考试，考察数据库原理、SQL语言和数据库设计等核心知识点'
+          ],
+          dailyHomework: [
+            '第1周：数据库概念练习，了解不同类型的数据库管理系统',
+            '第2周：关系数据库基础练习，使用关系代数进行查询',
+            '第3周：SQL基础练习，编写基本的SELECT语句',
+            '第4周：SQL高级查询练习，使用JOIN和子查询',
+            '第5周：数据库设计练习，绘制ER图和设计表结构',
+            '第6周：数据库管理练习，设置用户权限和备份数据库',
+            '第7周：NoSQL数据库练习，使用MongoDB和Redis',
+            '第8周：数据库应用开发练习，使用Python连接数据库并开发应用'
+          ]
+        },
+        references: {
+          books: ['数据库系统概论', 'SQL必知必会', 'NoSQL精粹'],
+          selfStudy: [
+            'MySQL官方文档：学习MySQL数据库的使用',
+            'PostgreSQL官方文档：学习PostgreSQL数据库的使用',
+            'MongoDB官方文档：学习NoSQL数据库的使用',
+            'SQLZoo：交互式SQL学习平台'
+          ]
+        }
       }
     },
     {
@@ -659,8 +784,33 @@ export default function CourseDetail() {
             ]
           }
         ],
-        assessment: '平时作业(20%) + 案例分析(40%) + 期末考试(40%)',
-        references: ['商务数据分析', '数据驱动的商务决策', '商业智能与数据分析']
+        assessment: {
+          description: '平时作业(20%) + 案例分析(40%) + 期末考试(40%)',
+          details: [
+            '平时作业：每天布置商务分析练习，内容与当日学习主题相关，要求当天完成并提交',
+            '案例分析：完成一个商务分析案例，运用所学知识解决实际商务问题',
+            '期末考试：闭卷考试，考察商务分析方法、工具和应用等核心知识点'
+          ],
+          dailyHomework: [
+            '第1周：商务分析概念练习，分析一个企业的商务分析应用',
+            '第2周：商务数据类型练习，收集和整理不同类型的商务数据',
+            '第3周：描述性分析练习，使用统计方法分析商务数据',
+            '第4周：诊断性分析练习，使用相关性分析和假设检验',
+            '第5周：预测性分析练习，使用时间序列和回归分析进行预测',
+            '第6周：规范性分析练习，使用优化模型和决策树进行决策',
+            '第7周：商务分析工具练习，使用Excel、Python和BI工具',
+            '第8周：综合案例分析，完成一个完整的商务分析报告'
+          ]
+        },
+        references: {
+          books: ['商务数据分析', '数据驱动的商务决策', '商业智能与数据分析'],
+          selfStudy: [
+            'Harvard Business Review：商业分析相关文章',
+            'Coursera商业分析课程：学习商业分析专业知识',
+            'Tableau Public：学习数据可视化和商业智能',
+            '真实商业分析案例：分析实际企业的商业分析实践'
+          ]
+        }
       }
     }
   ];
@@ -752,17 +902,44 @@ export default function CourseDetail() {
           {/* 考核方式 */}
           <div className="bg-white rounded-lg shadow-md p-6 mb-8">
             <h2 className="text-2xl font-bold mb-4 text-blue-800">考核方式</h2>
-            <p className="text-gray-700">{course.details.assessment}</p>
+            <p className="text-gray-700 mb-4">{course.details.assessment.description}</p>
+            <div className="mb-6">
+              <h3 className="font-medium text-blue-600 mb-2">考核细则：</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                {course.details.assessment.details.map((detail: string, index: number) => (
+                  <li key={index} className="text-gray-700">{detail}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-medium text-blue-600 mb-2">每日作业安排：</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                {course.details.assessment.dailyHomework.map((homework: string, index: number) => (
+                  <li key={index} className="text-gray-700">{homework}</li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* 参考资料 */}
           <div className="bg-white rounded-lg shadow-md p-6">
             <h2 className="text-2xl font-bold mb-4 text-blue-800">参考资料</h2>
-            <ul className="list-disc pl-6 space-y-2">
-              {course.details.references.map((reference: string, index: number) => (
-                <li key={index} className="text-gray-700">{reference}</li>
-              ))}
-            </ul>
+            <div className="mb-6">
+              <h3 className="font-medium text-blue-600 mb-2">推荐书籍：</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                {course.details.references.books.map((book: string, index: number) => (
+                  <li key={index} className="text-gray-700">{book}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-medium text-blue-600 mb-2">自学资源：</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                {course.details.references.selfStudy.map((resource: string, index: number) => (
+                  <li key={index} className="text-gray-700">{resource}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
