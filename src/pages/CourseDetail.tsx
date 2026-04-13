@@ -54,22 +54,22 @@ export default function CourseDetail() {
     {
       id: '3',
       name: '数据采集与处理',
-      description: '学习数据采集的方法和工具，以及数据处理的技术。',
+      description: '学习数据采集的方法和工具，以及数据处理的技术，包括网络爬虫、API数据获取、数据清洗与转换等。',
       image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Data%20collection%20and%20processing%20workflow%2C%20modern%20design&image_size=landscape_16_9',
       details: {
-        objectives: ['掌握网络数据采集技术', '学习API数据获取方法', '了解数据处理流程', '能够处理各种类型的数据'],
+        objectives: ['掌握网络数据采集的基本原理和技术', '学习使用Python实现网络爬虫', '掌握API数据获取和解析方法', '了解数据处理的完整流程', '能够处理和分析各种类型的数据', '培养数据质量意识和数据处理能力'],
         outline: [
-          { week: 1, title: '数据采集概述', content: '数据采集定义、方法、工具' },
-          { week: 2, title: '网络爬虫基础', content: 'HTTP协议、Requests库、BeautifulSoup' },
-          { week: 3, title: '高级爬虫技术', content: 'Selenium、Scrapy框架' },
-          { week: 4, title: 'API数据获取', content: 'RESTful API、API认证、数据解析' },
-          { week: 5, title: '数据存储', content: '文件存储、数据库存储' },
-          { week: 6, title: '数据清洗', content: '数据质量评估、数据清洗方法' },
-          { week: 7, title: '数据转换', content: '数据格式转换、数据集成' },
-          { week: 8, title: '综合实践', content: '完整数据采集与处理项目' }
+          { week: 1, title: '数据采集概述', content: '数据采集定义、应用场景、常用方法与工具介绍；数据采集的伦理与法律问题' },
+          { week: 2, title: '网络爬虫基础', content: 'HTTP协议基础、Requests库使用、BeautifulSoup解析HTML、XPath选择器' },
+          { week: 3, title: '高级爬虫技术', content: 'Selenium自动化测试工具、Scrapy框架使用、反爬策略与应对方法' },
+          { week: 4, title: 'API数据获取', content: 'RESTful API概念、API认证方式、JSON/XML数据解析、API rate limit处理' },
+          { week: 5, title: '数据存储', content: '文件存储（CSV、JSON、Excel）、数据库存储（MySQL、MongoDB）、数据存储最佳实践' },
+          { week: 6, title: '数据清洗', content: '数据质量评估指标、缺失值处理方法、异常值检测与处理、重复数据处理' },
+          { week: 7, title: '数据转换与集成', content: '数据格式转换、数据标准化、数据集成方法、数据规约技术' },
+          { week: 8, title: '综合实践', content: '完整数据采集与处理项目：从需求分析、数据采集、存储、清洗到分析的全流程实践' }
         ],
-        assessment: '平时作业(30%) + 爬虫项目(40%) + 期末考试(30%)',
-        references: ['Python网络爬虫权威指南', '数据采集与预处理', '网络数据挖掘']
+        assessment: '平时作业(20%) + 爬虫项目(40%) + 数据处理实验(20%) + 期末考试(20%)',
+        references: ['Python网络爬虫权威指南', '数据采集与预处理', '网络数据挖掘', 'Python数据分析', 'Web Scraping with Python', 'Data Wrangling with Python']
       }
     },
     {
