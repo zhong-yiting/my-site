@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getCourseById } from '../data/courses';
-import CodeMirror from '@uiw/react-codemirror';
-import { python } from '@codemirror/lang-python';
-import { oneDark } from '@codemirror/theme-one-dark';
 
 interface Task {
   id: string;
@@ -750,18 +747,15 @@ def generate_kpi_report(df):
 
               {task.type === 'code' && (
                 <div>
-                  <CodeMirror
+                  <textarea
                     value={userAnswer}
-                    height="400px"
-                    extensions={[python()]}
-                    theme={oneDark}
-                    onChange={(value) => {
-                      setUserAnswer(value);
-                    }}
+                    onChange={(e) => setUserAnswer(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary font-mono text-sm"
+                    rows={15}
                     placeholder="请编写Python代码..."
                   />
                   <p className="text-gray-500 text-sm mt-2">
-                    使用Python语法编写代码。代码编辑器支持语法高亮显示。
+                    使用Python语法编写代码。
                   </p>
                 </div>
               )}

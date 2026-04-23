@@ -6,15 +6,6 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'dist',
-    chunkSizeWarningLimit: 1000,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'router': ['react-router-dom'],
-          'codemirror': ['@uiw/react-codemirror', 'codemirror', '@codemirror/lang-python', '@codemirror/theme-one-dark'],
-        }
-      }
-    }
+    chunkSizeWarningLimit: 500
   }
 })
