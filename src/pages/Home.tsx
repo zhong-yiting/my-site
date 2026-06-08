@@ -1,42 +1,76 @@
 import { useState } from 'react';
 
 export default function Home() {
-  const [courses] = useState([
+  const [projects] = useState([
     {
       id: 1,
-      name: 'Python基础',
-      description: '学习Python编程语言的基础知识，包括语法、数据类型、控制结构等。',
-      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Python%20programming%20code%20on%20screen%2C%20clean%20modern%20design&image_size=landscape_16_9'
+      name: '数据清洗',
+      description: '学习数据清洗的基本方法，处理缺失值、异常值、重复值等数据质量问题。',
+      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Data%20cleaning%20process%20with%20missing%20values%20handling%2C%20modern%20design&image_size=landscape_16_9',
+      tags: ['Python', 'pandas', '数据预处理']
     },
     {
       id: 2,
-      name: '数据分析技术',
-      description: '学习数据分析的基本方法和技术，包括数据清洗、数据可视化等。',
-      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Data%20analysis%20dashboard%20with%20charts%20and%20graphs%2C%20modern%20design&image_size=landscape_16_9'
+      name: '购物篮分析',
+      description: '使用关联规则挖掘技术分析购物篮数据，发现商品间的关联关系。',
+      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Shopping%20basket%20analysis%20with%20association%20rules%2C%20modern%20design&image_size=landscape_16_9',
+      tags: ['关联规则', 'Apriori', '市场篮分析']
     },
     {
       id: 3,
-      name: '数据采集与处理',
-      description: '学习数据采集的方法和工具，以及数据处理的技术。',
-      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Data%20collection%20and%20processing%20workflow%2C%20modern%20design&image_size=landscape_16_9'
+      name: '客户聚类分析',
+      description: '使用聚类算法对客户进行分群，识别不同客户群体的特征和行为模式。',
+      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Customer%20clustering%20analysis%20with%20K-means%2C%20modern%20design&image_size=landscape_16_9',
+      tags: ['K-means', '客户分群', '聚类分析']
     },
     {
       id: 4,
-      name: '供应链数据分析',
-      description: '学习如何分析供应链数据，优化供应链管理。',
-      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Supply%20chain%20data%20analysis%20diagram%2C%20modern%20design&image_size=landscape_16_9'
+      name: '数据可视化',
+      description: '学习使用Python可视化库创建各种图表，有效展示数据分析结果。',
+      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Data%20visualization%20with%20charts%20and%20graphs%2C%20modern%20design&image_size=landscape_16_9',
+      tags: ['Matplotlib', 'Seaborn', '数据展示']
     },
     {
       id: 5,
-      name: '数据库原理与应用',
-      description: '学习数据库的基本原理和应用，包括SQL语言、数据库设计等。',
-      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Database%20schema%20and%20SQL%20queries%2C%20modern%20design&image_size=landscape_16_9'
+      name: '分组聚类分析',
+      description: '深入学习聚类分析方法，包括层次聚类、密度聚类等多种聚类技术。',
+      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Hierarchical%20clustering%20dendrogram%20visualization%2C%20modern%20design&image_size=landscape_16_9',
+      tags: ['层次聚类', 'DBSCAN', '聚类评估']
     },
     {
       id: 6,
-      name: '商务分析技术',
-      description: '学习商务数据分析的高级技术和方法，包括统计分析、预测模型等。',
-      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Business%20analysis%20dashboard%20with%20charts%20and%20metrics%2C%20modern%20design&image_size=landscape_16_9'
+      name: 'AB测试',
+      description: '学习AB测试的设计与分析方法，评估不同方案的效果差异。',
+      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=AB%20testing%20experiment%20comparison%20dashboard%2C%20modern%20design&image_size=landscape_16_9',
+      tags: ['假设检验', '统计分析', '实验设计']
+    },
+    {
+      id: 7,
+      name: '店铺经营分析',
+      description: '分析店铺经营数据，包括销售额、客流量、转化率等关键指标。',
+      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Store%20operation%20analysis%20dashboard%2C%20modern%20design&image_size=landscape_16_9',
+      tags: ['经营指标', '销售分析', 'KPI分析']
+    },
+    {
+      id: 8,
+      name: '消费者行为分析',
+      description: '分析消费者购买行为数据，了解消费者偏好和购买决策过程。',
+      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Consumer%20behavior%20analysis%20with%20purchase%20patterns%2C%20modern%20design&image_size=landscape_16_9',
+      tags: ['行为分析', '用户画像', 'RFM模型']
+    },
+    {
+      id: 9,
+      name: '市场分析',
+      description: '进行市场趋势分析、竞争分析，为市场决策提供数据支持。',
+      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Market%20analysis%20with%20trends%20and%20competition%2C%20modern%20design&image_size=landscape_16_9',
+      tags: ['市场趋势', '竞争分析', 'SWOT分析']
+    },
+    {
+      id: 10,
+      name: '时间序列分析',
+      description: '学习时间序列数据的分析方法，进行趋势预测和季节性分析。',
+      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Time%20series%20analysis%20with%20forecasting%2C%20modern%20design&image_size=landscape_16_9',
+      tags: ['时间序列', 'ARIMA', '预测模型']
     }
   ]);
 
@@ -48,7 +82,8 @@ export default function Home() {
           <div className="text-xl font-bold text-blue-600">钟依廷的个人页面</div>
           <div className="flex space-x-4">
             <a href="#home" className="text-blue-600 hover:text-blue-800">首页</a>
-            <a href="#courses" className="text-blue-600 hover:text-blue-800">课程</a>
+            <a href="#projects" className="text-blue-600 hover:text-blue-800">训练项目</a>
+            <a href="#guestbook" className="text-blue-600 hover:text-blue-800">留言板</a>
           </div>
         </div>
       </nav>
@@ -82,109 +117,12 @@ export default function Home() {
                 目标成为一名优秀的商务数据分析专员。
               </p>
               <div className="flex space-x-4">
-                <a href="#courses" className="bg-white text-blue-800 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors">
-                  查看课程
+                <a href="#projects" className="bg-white text-blue-800 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                  训练项目
                 </a>
-                <a href="#projects" className="bg-transparent border-2 border-white text-white px-4 py-2 rounded-lg font-medium hover:bg-white hover:text-blue-800 transition-colors">
-                  项目经验
+                <a href="#guestbook" className="bg-transparent border-2 border-white text-white px-4 py-2 rounded-lg font-medium hover:bg-white hover:text-blue-800 transition-colors">
+                  留言板
                 </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 项目经验部分 */}
-      <section id="projects" className="py-16 px-4 bg-white">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold text-center mb-12 text-blue-800">项目经验</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-blue-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=E-commerce%20sales%20data%20analysis%20dashboard%2C%20modern%20design&image_size=landscape_16_9" 
-                  alt="电商销售数据分析" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-3 text-blue-800">电商销售数据分析</h3>
-                <p className="text-gray-600 mb-4">
-                  使用Python和pandas对电商平台销售数据进行分析，
-                  构建数据可视化仪表盘，识别销售趋势和客户行为模式，
-                  为营销决策提供数据支持。
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Python</span>
-                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">pandas</span>
-                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">数据可视化</span>
-                </div>
-              </div>
-            </div>
-            <div className="bg-blue-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Supply%20chain%20optimization%20analysis%20dashboard%2C%20modern%20design&image_size=landscape_16_9" 
-                  alt="供应链优化分析" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-3 text-blue-800">供应链优化分析</h3>
-                <p className="text-gray-600 mb-4">
-                  分析供应链数据，使用库存优化模型计算最优库存水平，
-                  识别供应链瓶颈，提出优化建议，
-                  预计可降低库存成本15%。
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Excel</span>
-                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">供应链分析</span>
-                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">优化模型</span>
-                </div>
-              </div>
-            </div>
-            <div className="bg-blue-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Customer%20profile%20analysis%20dashboard%2C%20modern%20design&image_size=landscape_16_9" 
-                  alt="客户画像构建" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-3 text-blue-800">客户画像构建</h3>
-                <p className="text-gray-600 mb-4">
-                  使用SQL从数据库中提取客户数据，
-                  进行数据清洗和特征工程，
-                  构建客户画像，为精准营销提供支持。
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">SQL</span>
-                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">数据库</span>
-                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">客户分析</span>
-                </div>
-              </div>
-            </div>
-            <div className="bg-blue-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Web%20data%20collection%20system%2C%20modern%20design&image_size=landscape_16_9" 
-                  alt="网络数据采集系统" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-3 text-blue-800">网络数据采集系统</h3>
-                <p className="text-gray-600 mb-4">
-                  使用Python和Scrapy框架开发网络爬虫，
-                  采集电商平台商品数据，
-                  存储到MongoDB数据库，为价格监测提供数据支持。
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Python</span>
-                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Scrapy</span>
-                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">MongoDB</span>
-                </div>
               </div>
             </div>
           </div>
@@ -264,26 +202,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 课程列表部分 */}
-      <section id="courses" className="py-16 px-4">
+      {/* 训练项目部分 */}
+      <section id="projects" className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold text-center mb-12 text-blue-800">我的课程</h2>
+          <h2 className="text-3xl font-bold text-center mb-4 text-blue-800">商务数据分析训练项目</h2>
+          <p className="text-center text-gray-600 mb-12">包含教学教程讲解和实训环节，全面提升数据分析实战能力</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {courses.map((course) => (
-              <div key={course.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            {projects.map((project) => (
+              <div key={project.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
                 <div className="h-48 overflow-hidden">
                   <img 
-                    src={course.image} 
-                    alt={course.name} 
+                    src={project.image} 
+                    alt={project.name} 
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-blue-800">{course.name}</h3>
-                  <p className="text-gray-600 mb-4">{course.description}</p>
-                  <a href={`/course/${course.id}`} className="text-blue-600 hover:text-blue-800 font-medium">
-                    查看详情 →
-                  </a>
+                  <h3 className="text-xl font-bold mb-2 text-blue-800">{project.name}</h3>
+                  <p className="text-gray-600 mb-4">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map((tag, index) => (
+                      <span key={index} className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">{tag}</span>
+                    ))}
+                  </div>
+                  <div className="flex space-x-2">
+                    <a href={`/project/${project.id}`} className="flex-1 text-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                      教学教程
+                    </a>
+                    <a href={`/practice/${project.id}`} className="flex-1 text-center bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm">
+                      实训练习
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
