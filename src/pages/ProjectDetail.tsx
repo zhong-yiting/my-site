@@ -684,21 +684,20 @@ plt.show()`
   }
 };
 
-function getDetailPhotoUrl(projectId: number): string {
-  const seeds: Record<number, string> = {
-    1: 'data-cleaning-analytics-header',
-    2: 'shopping-basket-retail-header',
-    3: 'customer-segmentation-header',
-    4: 'data-visualization-charts-header',
-    5: 'clustering-algorithms-header',
-    6: 'ab-testing-experiment-header',
-    7: 'store-business-analytics-header',
-    8: 'consumer-behavior-research-header',
-    9: 'market-analysis-competition-header',
-    10: 'time-series-forecasting-header'
+function getIconColor(color: string): string {
+  const colors: Record<string, string> = {
+    blue: '#2563eb',
+    green: '#16a34a',
+    purple: '#9333ea',
+    orange: '#ea580c',
+    red: '#dc2626',
+    pink: '#db2777',
+    cyan: '#0891b2',
+    indigo: '#4f46e5',
+    teal: '#0d9488',
+    gray: '#4b5563'
   };
-  const seed = seeds[projectId] || 'business-data-header';
-  return `https://picsum.photos/seed/${seed}/1200/400`;
+  return colors[color] || '#2563eb';
 }
 
 export default function ProjectDetail() {
@@ -707,8 +706,6 @@ export default function ProjectDetail() {
   const project = projectsData[projectId as keyof typeof projectsData];
   const [currentSection, setCurrentSection] = useState(0);
   const [showCode, setShowCode] = useState(false);
-  const [headerImageLoaded, setHeaderImageLoaded] = useState(false);
-  const [headerImageError, setHeaderImageError] = useState(false);
 
   if (!project) {
     return (
@@ -750,6 +747,20 @@ export default function ProjectDetail() {
     gray: 'border-l-gray-500 bg-gray-50'
   };
 
+  const headerGradient: Record<string, string> = {
+    blue: 'from-blue-600 to-blue-800',
+    green: 'from-green-600 to-green-800',
+    purple: 'from-purple-600 to-purple-800',
+    orange: 'from-orange-500 to-orange-700',
+    red: 'from-red-500 to-red-700',
+    pink: 'from-pink-500 to-pink-700',
+    cyan: 'from-cyan-500 to-cyan-700',
+    indigo: 'from-indigo-600 to-indigo-800',
+    teal: 'from-teal-500 to-teal-700',
+    gray: 'from-gray-600 to-gray-800'
+  };
+  const headerBg = headerGradient[project.color] || 'from-blue-600 to-blue-800';
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {/* 导航栏 */}
@@ -760,7 +771,7 @@ export default function ProjectDetail() {
             <span>返回首页</span>
           </Link>
           <div className="flex items-center space-x-4">
-            <span className={`px-3 py-1 rounded-full text-sm font-medium ${colorClasses[project.color]}`}>
+            <span className="px-3 py-1 rounded-full text-sm font-medium bg-white text-gray-700">
               {project.level}
             </span>
             <span className="text-gray-500 text-sm">约{project.duration}</span>
@@ -768,44 +779,31 @@ export default function ProjectDetail() {
         </div>
       </nav>
 
-      {/* 头部信息 - 带响应式图片 */}
-      <section className="pt-20 pb-12 px-4 bg-gradient-to-r from-blue-600 to-blue-800 text-white relative overflow-hidden">
-        {/* 背景图片 */}
-        <img
-          src={getDetailPhotoUrl(projectId)}
-          alt=""
-          onLoad={() => setHeaderImageLoaded(true)}
-          onError={() => setHeaderImageError(true)}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-            headerImageLoaded && !headerImageError ? 'opacity-25' : 'opacity-0'
-          }`}
-        />
-        {/* 渐变遮罩 */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-blue-800/90"></div>
-        
+      {/* 头部信息 - 渐变背景 + 大图标 */}
+      <section className={`pt-20 pb-12 px-4 bg-gradient-to-r ${headerBg} text-white relative overflow-hidden`}>
         <div className="container mx-auto max-w-4xl relative z-10">
           <div className="flex flex-col md:flex-row items-center mb-6 gap-6">
-            {/* 项目图标卡片 */}
-            <div className={`p-6 rounded-2xl ${colorClasses[project.color]} bg-white shadow-lg flex-shrink-0`}>
-              <IconComponent className="w-12 h-12" />
+            {/* 项目大图标 */}
+            <div className="p-8 rounded-3xl bg-white shadow-2xl flex-shrink-0">
+              <IconComponent className="w-16 h-16" style={{ color: getIconColor(project.color) }} />
             </div>
             <div className="text-center md:text-left">
               <h1 className="text-3xl md:text-4xl font-bold mb-3">{project.name}</h1>
-              <p className="text-blue-100 text-lg leading-relaxed">{project.description}</p>
+              <p className="text-white text-opacity-90 text-lg leading-relaxed">{project.description}</p>
             </div>
           </div>
           
           <div className="flex flex-wrap gap-4 mt-8 justify-center md:justify-start">
             <div className="bg-white bg-opacity-20 backdrop-blur-sm px-5 py-3 rounded-lg">
-              <div className="text-sm text-blue-200 mb-1">学习难度</div>
+              <div className="text-sm text-white text-opacity-80 mb-1">学习难度</div>
               <div className="font-bold text-lg">{project.level}</div>
             </div>
             <div className="bg-white bg-opacity-20 backdrop-blur-sm px-5 py-3 rounded-lg">
-              <div className="text-sm text-blue-200 mb-1">预计时长</div>
+              <div className="text-sm text-white text-opacity-80 mb-1">预计时长</div>
               <div className="font-bold text-lg">{project.duration}</div>
             </div>
             <div className="bg-white bg-opacity-20 backdrop-blur-sm px-5 py-3 rounded-lg">
-              <div className="text-sm text-blue-200 mb-1">前置知识</div>
+              <div className="text-sm text-white text-opacity-80 mb-1">前置知识</div>
               <div className="font-bold text-lg">{project.prerequisites.length}项</div>
             </div>
           </div>

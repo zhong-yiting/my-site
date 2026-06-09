@@ -98,8 +98,6 @@ export default function Home() {
     }
   ]);
 
-  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100">
       {/* 导航栏 */}
@@ -164,30 +162,13 @@ export default function Home() {
             {projects.map((project) => {
               const IconComponent = project.icon;
               const colors = colorSchemes[project.color as keyof typeof colorSchemes];
-              const isLoaded = loadedImages[project.id];
               
               return (
                 <div key={project.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                  {/* 图片区域 */}
-                  <div className="h-48 relative overflow-hidden">
-                    {/* 主图 */}
-                    <img 
-                      src={getPhotoUrl(project.id)}
-                      alt={project.name}
-                      onLoad={() => setLoadedImages(prev => ({...prev, [project.id]: true}))}
-                      onError={() => setLoadedImages(prev => ({...prev, [project.id]: false}))}
-                      className={`w-full h-full object-cover transition-transform duration-500 hover:scale-110 ${
-                        isLoaded === true ? 'block' : 'hidden'
-                      }`}
-                    />
-                    
-                    {/* 备用渐变背景 + 图标 */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} flex flex-col items-center justify-center ${
-                      isLoaded === true ? 'hidden' : 'flex'
-                    }`}>
-                      <IconComponent className="w-20 h-20 text-white mb-3" />
-                      <span className="text-white text-xl font-bold">{project.name}</span>
-                    </div>
+                  {/* 图标区域（渐变背景 + 大图标） */}
+                  <div className={`h-48 relative overflow-hidden bg-gradient-to-br ${colors.gradient} flex flex-col items-center justify-center`}>
+                    <IconComponent className="w-20 h-20 text-white mb-3" />
+                    <span className="text-white text-xl font-bold">{project.name}</span>
                   </div>
                   
                   <div className="p-6">
@@ -300,22 +281,4 @@ export default function Home() {
       </footer>
     </div>
   );
-}
-
-function getPhotoUrl(projectId: number): string {
-  // 为每个项目分配稳定的图片URL，优先使用picsum确保可访问
-  const seeds: Record<number, string> = {
-    1: 'data-cleaning-analytics', // 数据清洗
-    2: 'shopping-basket-retail', // 购物篮分析
-    3: 'customer-segmentation', // 客户聚类分析
-    4: 'data-visualization-charts', // 数据可视化
-    5: 'clustering-algorithms', // 分组聚类分析
-    6: 'ab-testing-experiment', // AB测试
-    7: 'store-business-analytics', // 店铺经营分析
-    8: 'consumer-behavior-research', // 消费者行为分析
-    9: 'market-analysis-competition', // 市场分析
-    10: 'time-series-forecasting' // 时间序列分析
-  };
-  const seed = seeds[projectId] || 'business-data';
-  return `https://picsum.photos/seed/${seed}/800/500`;
 }
