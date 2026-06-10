@@ -264,6 +264,9 @@ const exercises: Record<number, Exercise[]> = {
 };
 
 // ===== React UI 组件 =====
+// ============ Pyodide 全局引用（避免多次实例化） ============
+let pyodideSingleton: any = null;
+
 export default function Practice() {
   const { id } = useParams<{ id: string }>();
   const projectId = Math.max(1, Math.min(10, parseInt(id || '1')));
@@ -275,11 +278,21 @@ export default function Practice() {
   const [code, setCode] = useState(projectExercises[0]?.starter || '');
   const [copied, setCopied] = useState(false);
 
+  // === Pyodide 运行环境 ===
+  const [pyReady, setPyReady] = useState(false);
+  const [pyLoading, setPyLoading] = useState(false);
+  const [pyProgress, setPyProgress] = useState('点击「运行代码」首次加载 Python 环境');
+  const [output, setOutput] = useState<string>('');
+  const [charts, setCharts] = useState<string[]>([]); // base64 png
+  const [running, setRunning] = useState(false);
+
   // 切换练习时重置代码
   const switchExercise = (idx: number) => {
     setActiveExercise(idx);
     setCode(projectExercises[idx]?.starter || '');
     setShowSolution(false);
+    setOutput('');
+    setCharts([]);
   };
 
   const copySolution = async () => {
@@ -288,6 +301,100 @@ export default function Practice() {
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     } catch { /* ignore */ }
+  };
+
+  const ensurePyodide = async (): Promise<any> => {
+    if (pyodideSingleton) return pyodideSingleton;
+    // 动态加载 Pyodide CDN
+    // @ts-ignore
+    const anyWindow = window as any;
+    if (!anyWindow.loadPyodide) {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js';
+      await new Promise<void>((res, rej) => {
+        script.onload = () => res();
+        script.onerror = () => rej(new Error('无法加载 Pyodide'));
+        document.head.appendChild(script);
+      });
+    }
+    setPyProgress('正在初始化 Python (pyodide) ...');
+    const py = await anyWindow.loadPyodide({
+      indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.26.2/full/'
+    });
+    setPyProgress('正在安装 numpy / pandas ...');
+    await py.loadPackage(['numpy', 'pandas']);
+    setPyProgress('正在安装 matplotlib / scipy / scikit-learn / statsmodels ...');
+    try { await py.loadPackage(['matplotlib', 'scipy', 'scikit-learn', 'statsmodels', 'seaborn']); } catch {}
+    // 重定向 stdout/stderr
+    py.runPython(`
+import io, sys
+class _IO(io.StringIO):
+    def __init__(self, cb): super().__init__(); self._cb=cb
+    def write(self, s):
+        self._cb(str(s)); return len(s)
+_stdout_buf = ''
+_stderr_buf = ''
+def _so(s): global _stdout_buf; _stdout_buf += s
+def _se(s): global _stderr_buf; _stderr_buf += s
+sys.stdout = _IO(_so)
+sys.stderr = _IO(_se)
+    `);
+    pyodideSingleton = py;
+    setPyReady(true);
+    return py;
+  };
+
+  const runCode = async () => {
+    setRunning(true);
+    setOutput('');
+    setCharts([]);
+    if (!pyLoading && !pyReady) setPyLoading(true);
+    try {
+      const py = await ensurePyodide();
+      setPyProgress('执行代码 ...');
+      // 每次运行前：重置 buffer / matplotlib backend
+      py.runPython(`
+_stdout_buf = ''
+_stderr_buf = ''
+import matplotlib
+matplotlib.use('AGG')
+import matplotlib.pyplot as plt
+plt.close('all')
+import base64, io
+_chart_b64s = []
+def _save_figs():
+    global _chart_b64s
+    for fignum in plt.get_fignums():
+        fig = plt.figure(fignum)
+        buf = io.BytesIO()
+        fig.savefig(buf, format='png', bbox_inches='tight', dpi=100)
+        buf.seek(0)
+        _chart_b64s.append(base64.b64encode(buf.read()).decode('ascii'))
+    plt.close('all')
+      `);
+      // 执行用户代码
+      try {
+        await py.runPythonAsync(code);
+      } catch (err: any) {
+        // 捕获错误，仍输出出来
+        const trace = err?.message || String(err);
+        py.runPython(`_stderr_buf += ${JSON.stringify(trace)}`);
+      }
+      // 尝试保存所有图
+      try { py.runPython(`_save_figs()`); } catch {}
+      const stdout = py.runPython(`_stdout_buf`);
+      const stderr = py.runPython(`_stderr_buf`);
+      const b64s: string[] = py.runPython(`_chart_b64s`).toJs?.() || [];
+      const out = [stdout, stderr].filter(Boolean).join('\n').trim();
+      setOutput(out || '(无输出)');
+      setCharts(b64s);
+      setPyProgress(b64s.length ? `执行完成（输出 ${b64s.length} 张图）` : '执行完成');
+    } catch (err: any) {
+      setOutput('错误: ' + (err?.message || String(err)));
+    } finally {
+      setRunning(false);
+      setPyLoading(false);
+    }
   };
 
   const currentEx = projectExercises[activeExercise];
@@ -345,7 +452,21 @@ export default function Practice() {
             <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
               <div className="flex items-center justify-between px-4 py-2 bg-gray-800 text-gray-200 text-sm">
                 <span className="font-medium">📝 我的代码编辑器（Python）</span>
-                <span className="text-xs text-gray-400">在此编写你的答案</span>
+                <button
+                  onClick={runCode}
+                  disabled={running}
+                  className={`px-3 py-1.5 rounded text-xs font-medium flex items-center gap-1.5 transition-colors ${
+                    running
+                      ? 'bg-gray-600 text-gray-300 cursor-not-allowed'
+                      : `${color.bg} ${color.text} hover:brightness-95`
+                  }`}
+                >
+                  {running ? (
+                    <><span className="inline-block w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin"></span> {pyProgress}</>
+                  ) : (
+                    <><span className="text-lg leading-none">▶</span> 运行代码 {pyReady ? '' : '(首次加载 30~60s)'}</>
+                  )}
+                </button>
               </div>
               <textarea
                 value={code}
@@ -354,6 +475,26 @@ export default function Practice() {
                 className="w-full min-h-[300px] p-4 font-mono text-sm bg-gray-900 text-green-200 resize-y focus:outline-none"
               />
             </div>
+
+            {/* 运行输出 */}
+            {(output || charts.length > 0) && (
+              <>
+                {charts.length > 0 && (
+                  <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
+                    <div className="px-4 py-2 bg-gray-800 text-gray-200 text-sm font-medium">📊 生成的图表 ({charts.length})</div>
+                    <div className={`p-4 ${charts.length > 1 ? 'grid grid-cols-1 md:grid-cols-2 gap-4' : ''}`}>
+                      {charts.map((b64, i) => (
+                        <img key={i} src={`data:image/png;base64,${b64}`} alt={`图表 ${i+1}`} className="w-full max-w-full rounded border bg-white" />
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
+                  <div className="px-4 py-2 bg-gray-800 text-gray-200 text-sm font-medium">💻 控制台输出</div>
+                  <pre className="p-4 bg-gray-900 text-green-200 font-mono text-sm whitespace-pre-wrap max-h-96 overflow-auto min-h-[100px]">{output}</pre>
+                </div>
+              </>
+            )}
 
             {/* 参考答案 */}
             <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
@@ -378,8 +519,16 @@ export default function Practice() {
             </div>
 
             {/* 底部提示 */}
-            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-sm text-yellow-800 leading-relaxed">
-              <strong>💡 运行方式：</strong>将上面「我的代码编辑器」中的代码复制到本地 <code className="bg-yellow-100 px-1 rounded">.py</code> 文件，或使用 <code className="bg-yellow-100 px-1 rounded">在线 Python 运行器</code>（如 python.org/shell）运行。本页面作为练习题板，不提供在线执行环境。
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800 leading-relaxed">
+              <strong>💡 使用说明：</strong>在上面编辑器写好代码后，点击右上角「▶ 运行代码」按钮即可执行。首次点击时会自动加载浏览器中的 Python 环境（约 30~60 秒），之后运行会非常快。
+              <br />支持的库：<code className="bg-blue-100 px-1 rounded">numpy</code>
+              <code className="bg-blue-100 px-1 rounded">pandas</code>
+              <code className="bg-blue-100 px-1 rounded">matplotlib</code>
+              <code className="bg-blue-100 px-1 rounded">seaborn</code>
+              <code className="bg-blue-100 px-1 rounded">scipy</code>
+              <code className="bg-blue-100 px-1 rounded">scikit-learn</code>
+              <code className="bg-blue-100 px-1 rounded">statsmodels</code>
+              。matplotlib 的图表会自动以图片形式显示在下方「生成的图表」区域。
             </div>
           </div>
         )}
