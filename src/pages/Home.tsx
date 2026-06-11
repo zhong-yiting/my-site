@@ -33,81 +33,299 @@ export default function Home() {
       id: 1,
       name: '数据清洗',
       icon: Database,
-      description: '学习数据清洗的基本方法，处理缺失值、异常值、重复值等数据质量问题。',
       color: 'blue',
-      tags: ['Python', 'pandas', '数据预处理']
+      level: '入门',
+      description: '学习数据清洗的基本方法，处理缺失值、异常值、重复值等数据质量问题。',
+      tags: ['Python', 'pandas', '数据预处理'],
+      dataset: '校园便利店 3 个月真实销售流水（8,263 条记录）',
+      datasetFields: '订单号、商品名、单价、数量、金额、会员号、下单时间、支付方式',
+      process: [
+        '① 用 df.info() / df.isnull().sum() 诊断缺失值（发现「会员号」缺失 18%）',
+        '② 用 df.duplicated().sum() 检测重复行（发现 23 条完全重复订单）',
+        '③ IQR 法识别异常金额（检出 5 笔金额 > 均值 + 3×IQR）',
+        '④ 用中位数填充「会员号」缺失值，删除重复行，截尾异常金额',
+        '⑤ pd.to_datetime() 统一日期格式，str.strip() 清洗商品名空格'
+      ],
+      visualizations: [
+        '缺失值热力图（发现缺失集中在会员字段）',
+        '金额分布直方图 + 箱线图（发现右偏分布和离群值）',
+        '清洗前后数据质量对比柱状图（缺失率 18%→0%，重复率 0.28%→0%）'
+      ],
+      conclusions: [
+        '会员系统上线初期数据采集不完整，建议优先完善会员信息录入',
+        '识别出 5 个滞销 SKU（连续 30 天零销量），建议做下架评估',
+        '日均客单价 42.3 元，周末峰值达 68 元，适合做周末促销'
+      ],
+      businessInsight: '数据清洗后质量达标，输出 1 份 Excel 看板上报店长，滞销 SKU 已安排采购部核查。'
     },
     {
       id: 2,
       name: '购物篮分析',
       icon: ShoppingCart,
-      description: '使用关联规则挖掘技术分析购物篮数据，发现商品间的关联关系。',
       color: 'green',
-      tags: ['关联规则', 'Apriori', '市场篮分析']
+      level: '入门',
+      description: '使用关联规则挖掘技术分析购物篮数据，发现商品间的关联关系。',
+      tags: ['关联规则', 'Apriori', '市场篮分析'],
+      dataset: '电商平台 1 个月真实订单（1,500 笔交易，4,200+ 件商品）',
+      datasetFields: '订单ID、商品品类、商品名称、购买数量、订单金额、用户ID',
+      process: [
+        '① 将订单表转为 list of list 格式（每笔交易一个商品列表）',
+        '② TransactionEncoder 做 One-Hot 编码，得到 0/1 交易矩阵',
+        '③ apriori() 挖掘频繁项集（min_support=0.01，过滤低频组合）',
+        '④ association_rules() 生成关联规则，筛选 lift > 1.5、confidence > 40%',
+        '⑤ 按 lift 降序，输出 Top10 关联规则并做业务解读'
+      ],
+      visualizations: [
+        '置信度 × 支持度散点图（找出「黄金象限」——高置信+高支持）',
+        '商品共现热力图（发现强关联商品对，如「薯片↔可乐」）',
+        'Top10 关联规则条形图（lift 排序，标注前项→后项）'
+      ],
+      conclusions: [
+        '「啤酒+尿布」规则 lift=2.3，置信度 52%，支持度 3.1%（中度普遍）',
+        '「薯片+可乐」规则 lift=3.1，为全场最强关联，适合捆绑促销',
+        '「方便面+火腿肠」规则置信度 61%，可设计「泡面搭档」套餐'
+      ],
+      businessInsight: '建议将「薯片+可乐」邻近陈列，同时在薯片货架旁放置可乐促销牌，预计可提升客单价 8-12%。'
     },
     {
       id: 3,
       name: '客户聚类分析',
       icon: Users,
-      description: '使用聚类算法对客户进行分群，识别不同客户群体的特征和行为模式。',
       color: 'purple',
-      tags: ['K-means', '客户分群', '聚类分析']
+      level: '进阶',
+      description: '使用聚类算法对客户进行分群，识别不同客户群体的特征和行为模式。',
+      tags: ['K-means', '客户分群', '聚类分析'],
+      dataset: '某电商平台注册用户行为数据（1,000 条，8 个特征）',
+      datasetFields: '用户ID、累计消费额、购买次数、最近购买天数、平均订单金额、注册天数、活跃天数、折扣利用率',
+      process: [
+        '① 选取 5 个核心特征：消费额、频次、最近购买天数、件单价、折扣率',
+        '② StandardScaler 标准化（消除量纲差异）',
+        '③ 肘部法则 + 轮廓系数确定最优 K=4',
+        '④ K-Means(n_clusters=4) 完成聚类，计算各簇中心特征',
+        '⑤ 轮廓系数=0.62（聚类质量良好），各簇命名并输出营销策略'
+      ],
+      visualizations: [
+        '肘部法则曲线（SSE 随 K 值变化，找出拐点 K=4）',
+        '轮廓系数折线图（K=4 时 silhouette=0.62 最优）',
+        '4 簇特征雷达图（对比各簇在消费额/频次/活跃度上的差异）'
+      ],
+      conclusions: [
+        '簇0「高价值活跃客户」（占 15%）：消费额高、频次高、折扣率低→VIP 服务',
+        '簇1「沉睡流失客户」（占 23%）：最近购买天数>120天→强力召回',
+        '簇2「价格敏感客户」（占 35%）：折扣利用率最高→推送优惠券',
+        '簇3「潜力成长客户」（占 27%）：注册天数短但件单价高→重点培育'
+      ],
+      businessInsight: '针对沉睡客户推送专属召回优惠（满50减10），预计可唤醒 15%-20% 的沉睡用户，直接贡献约 ¥12,000 月销售额。'
     },
     {
       id: 4,
       name: '数据可视化',
       icon: BarChart3,
-      description: '学习使用Python可视化库创建各种图表，有效展示数据分析结果。',
       color: 'orange',
-      tags: ['Matplotlib', 'Seaborn', '数据展示']
+      level: '入门',
+      description: '学习使用Python可视化库创建各种图表，有效展示数据分析结果。',
+      tags: ['Matplotlib', 'Seaborn', '数据展示'],
+      dataset: '店铺全年经营数据（365 天，包含流量、订单、转化、库存）',
+      datasetFields: '日期、访客数、浏览量、订单数、销售额、退款额、库存量、客单价',
+      process: [
+        '① Matplotlib 配置中文字体（SimHei + axes.unicode_minus=False）',
+        '② 读取 CSV 数据，pd.to_datetime() 设置日期索引',
+        '③ 按月/周/日聚合，计算核心 KPI（同环比增长率）',
+        '④ 按图表类型选择最佳呈现：趋势→折线图、占比→饼图、对比→柱状图',
+        '⑤ Seaborn 绘制带置信区间的统计图，Plotly 生成交互式 HTML 图表'
+      ],
+      visualizations: [
+        '月度销售额折线图（标注春节/618/双11峰值，揭示季节性规律）',
+        '品类销售占比环形图（识别 Top3 品类占 68%）',
+        '访客→订单转化漏斗图（整体转化率 3.2%，识别瓶颈在「浏览→加购」）',
+        '客单价分布直方图+正态拟合（均值 ¥86，标准差 ¥23）'
+      ],
+      conclusions: [
+        '2 月（春节）销售额最低（¥32,000），11 月最高（¥128,000）',
+        '食品类占全店销售额 42%，其次是日用品 26%、服饰 18%',
+        '「浏览→加购」转化率仅 12%，详情页跳失率偏高（68%）',
+        '客单价 ¥86，低于行业均值 ¥100，有 15% 提升空间'
+      ],
+      businessInsight: '详情页跳失率高是最大瓶颈，建议优化商品主图和详情页文案；搭配「满100减10」活动提升客单价，目标客单价提升至 ¥99。'
     },
     {
       id: 5,
       name: '分组聚类分析',
       icon: GitBranch,
-      description: '深入学习聚类分析方法，包括层次聚类、密度聚类等多种聚类技术。',
       color: 'red',
-      tags: ['层次聚类', 'DBSCAN', '聚类评估']
+      level: '进阶',
+      description: '深入学习聚类分析方法，包括层次聚类、密度聚类等多种聚类技术。',
+      tags: ['层次聚类', 'DBSCAN', '聚类评估'],
+      dataset: '商品特征数据（500 个 SKU，6 个维度）',
+      datasetFields: '商品名、品类、单价、月销量、退货率、库存周转天数',
+      process: [
+        '① 数据标准化（StandardScaler），选取 4 个核心特征',
+        '② 层次聚类：scipy.linkage(Ward 法) 生成树状图，确定切割高度',
+        '③ DBSCAN(eps=0.8, min_samples=5) 自动发现密度簇',
+        '④ K-Means 对比（三种算法轮廓系数对照）',
+        '⑤ 对非球形簇（DBSCAN 检出 2 个环形簇）重点做业务解读'
+      ],
+      visualizations: [
+        '层次聚类树状图（dendrogram，颜色区分 4 个大类）',
+        'K-距离图（确定 DBSCAN eps=0.8 的拐点）',
+        '3 种算法聚类结果对比散点图（PCA 降维到 2D）'
+      ],
+      conclusions: [
+        '层次聚类分出 4 大类商品：爆款(12%)、常规品(48%)、长尾(28%)、问题品(12%)',
+        'DBSCAN 识别出 2 个异常簇（共 8 个 SKU），包括 1 个高退货率簇和 1 个零动销簇',
+        'K-Means 对环形簇无效，DBSCAN 更适合复杂结构数据'
+      ],
+      businessInsight: '识别出的「问题品簇」（退货率>15%）建议立即下架；「零动销簇」商品建议促销清仓，释放仓储资金。'
     },
     {
       id: 6,
       name: 'AB测试',
       icon: Target,
-      description: '学习AB测试的设计与分析方法，评估不同方案的效果差异。',
       color: 'pink',
-      tags: ['假设检验', '统计分析', '实验设计']
+      level: '进阶',
+      description: '学习AB测试的设计与分析方法，评估不同方案的效果差异。',
+      tags: ['假设检验', '统计分析', '实验设计'],
+      dataset: '电商首页按钮文案 AB 测试数据（各 5,000 样本）',
+      datasetFields: '用户ID、实验组别（A/B）、曝光数、点击数、转化数、下单金额',
+      process: [
+        '① 设计实验：A 组「立即购买」vs B 组「去抢购」（等量随机分流）',
+        '② 收集数据：运行 7 天，各收集 5,000 次曝光的转化数据',
+        '③ 计算核心指标：转化率 = 转化数/曝光数',
+        '④ Z 检验（双侧）：H0：A=B 无差异；H1：A≠B',
+        '⑤ 计算 95% 置信区间，评估效应量（Cohen\'s d）'
+      ],
+      visualizations: [
+        '两组转化率柱状图（带误差棒，标注 95% 置信区间）',
+        '转化率差异分布图（Bootstrap 重抽样 10,000 次）',
+        'p 值变化曲线（随样本量增长，p 值趋近显著）'
+      ],
+      conclusions: [
+        'A 组转化率 5.0%（250/5000），B 组转化率 6.3%（315/5000）',
+        'B 组相对提升 26%，Z=3.21，p=0.0013（显著）',
+        '95% 置信区间[0.6%, 2.0%]，不包含 0，结论可靠'
+      ],
+      businessInsight: '「去抢购」文案显著优于「立即购买」，预计全站推广后每月可多带来约 ¥45,000 订单额。建议 618 大促期间全量上线。'
     },
     {
       id: 7,
       name: '店铺经营分析',
       icon: TrendingUp,
-      description: '分析店铺经营数据，包括销售额、客流量、转化率等关键指标。',
       color: 'cyan',
-      tags: ['经营指标', '销售分析', 'KPI分析']
+      level: '入门',
+      description: '分析店铺经营数据，包括销售额、客流量、转化率等关键指标。',
+      tags: ['经营指标', '销售分析', 'KPI分析'],
+      dataset: '门店 POS 系统全年日度经营数据（365 天，12 个字段）',
+      datasetFields: '日期、门店、访客数、订单数、销售额、毛利、库存量、客单价、件单价、连带率',
+      process: [
+        '① 按日/周/月聚合，计算 GMV、客单价、转化率、毛利率等 12 个 KPI',
+        '② 计算环比（vs 上期）和同比（vs 去年同期），找出异常波动点',
+        '③ 拆解「销售额 = 访客数 × 转化率 × 客单价」，定位下滑原因',
+        '④ 品类贡献度分析（ABC 分类：销售额前 20% SKU 占 80% 销售额）',
+        '⑤ 制作月度经营看板：KPI 卡片 + 趋势图 + 排行榜'
+      ],
+      visualizations: [
+        '月度销售额趋势折线图（标注春节/五一/618/双11 节点）',
+        '品类贡献度帕累托图（前 3 品类贡献 72% 销售额）',
+        '销售拆解漏斗（访客↓ → 转化率×客单价 → 定位增长瓶颈）',
+        '门店 vs 全国平均对比雷达图（6 个维度找差距）'
+      ],
+      conclusions: [
+        '全年 GMV ¥268 万，同比↑12%，但 Q2 下滑 8%（受竞品开业影响）',
+        '连带率 1.42（行业均值 1.6），主因是品类关联推荐不足',
+        '库存周转天数 38 天（行业均值 45 天），库存管理良好',
+        '客单价 ¥86，低于均值 ¥100，连带率是最大提升空间'
+      ],
+      businessInsight: '建议在收银台增加「加购推荐话术」并设置连带奖励，连带率提升至 1.6 后可月增 ¥18,000 销售额。'
     },
     {
       id: 8,
       name: '消费者行为分析',
       icon: Users,
-      description: '分析消费者购买行为数据，了解消费者偏好和购买决策过程。',
       color: 'indigo',
-      tags: ['行为分析', '用户画像', 'RFM模型']
+      level: '进阶',
+      description: '分析消费者购买行为数据，了解消费者偏好和购买决策过程。',
+      tags: ['行为分析', '用户画像', 'RFM模型'],
+      dataset: '电商用户行为日志（10,000 用户，3 个月浏览/加购/购买记录）',
+      datasetFields: '用户ID、行为类型(浏览/加购/购买)、商品ID、品类、时间戳、订单金额',
+      process: [
+        '① 提取 500 名活跃买家，计算 R/F/M 三个维度指标',
+        '② RFM 等频分箱（qcut 各 5 等分），打分 1-5 分',
+        '③ 按 R×F×M 组合规则划分为 4 大客户群',
+        '④ 构建 AARRR 漏斗：曝光→点击→浏览→加购→下单→支付',
+        '⑤ 留存曲线：Day1/Day7/Day30 留存率'
+      ],
+      visualizations: [
+        'RFM 分群箱形图（各群 R/F/M 分布差异对比）',
+        'AARRR 转化漏斗图（各环节转化率标注，总转化率 2.8%）',
+        '客户生命周期留存曲线（标注关键节点留存率）'
+      ],
+      conclusions: [
+        '高价值客户占 18%，贡献 52% 销售额，平均 LTV ¥8,600',
+        '「浏览→加购」转化率仅 15%，详情页 CTA 按钮需要优化',
+        '7 日留存率 28%（行业均值 35%），新用户体验有待提升',
+        'RFM 模型识别出 92 名高流失风险客户（R 分≤2 且 F≤2）'
+      ],
+      businessInsight: '针对 92 名高流失风险客户发送专属优惠（满80减15），结合短信+Push 双触达，预计召回率 20%-25%，挽回月销售额约 ¥16,000。'
     },
     {
       id: 9,
       name: '市场分析',
       icon: PieChart,
-      description: '进行市场趋势分析、竞争分析，为市场决策提供数据支持。',
       color: 'teal',
-      tags: ['市场趋势', '竞争分析', 'SWOT分析']
+      level: '进阶',
+      description: '进行市场趋势分析、竞争分析，为市场决策提供数据支持。',
+      tags: ['市场趋势', '竞争分析', 'SWOT分析'],
+      dataset: '中国电商市场宏观数据（2018-2024，7 年，CAGR 计算）',
+      datasetFields: '年份、市场规模(万亿元)、增长率(%)、CR3市占率(%)、移动端占比(%)',
+      process: [
+        '① 收集艾瑞咨询/CNnic 权威报告数据，构建市场规模面板',
+        '② 计算 CAGR=(期末/期初)^(1/年数)-1，衡量 7 年复合增长率',
+        '③ PEST 分析：政策（电商法）、经济（消费升级）、社会（Z世代崛起）、技术（直播电商）',
+        '④ 波特五力：现有竞争、新进入者、替代品、供应商、买家议价',
+        '⑤ SWOT 矩阵：识别 SO/WO/ST/WT 四象限战略'
+      ],
+      visualizations: [
+        '市场规模趋势折线图（标注 TAM/SAM/SOM 三层市场）',
+        '竞争格局雷达图（对比自身与 Top3 竞品 5 个维度）',
+        'PEST 四象限图（标注各维度的关键驱动因素）'
+      ],
+      conclusions: [
+        '市场规模从 2018 ¥3.2 万亿增至 2024 ¥11.5 万亿，CAGR=23.8%',
+        'CR3=75%（阿里+京东+拼多多），市场高度集中',
+        '移动端占比从 62% 升至 91%，移动化趋势已成熟',
+        '机会：下沉市场、跨境电商；威胁：监管趋严、流量红利消退'
+      ],
+      businessInsight: '建议聚焦下沉市场（SAM 仍有两倍增长空间），通过拼多多/抖音渠道渗透三四线城市，3 年目标拿下 2% SOM 份额（约 ¥230 亿市场）。'
     },
     {
       id: 10,
       name: '时间序列分析',
       icon: Activity,
-      description: '学习时间序列数据的分析方法，进行趋势预测和季节性分析。',
       color: 'gray',
-      tags: ['时间序列', 'ARIMA', '预测模型']
+      level: '进阶',
+      description: '学习时间序列数据的分析方法，进行趋势预测和季节性分析。',
+      tags: ['时间序列', 'ARIMA', '预测模型'],
+      dataset: '某饮料品牌 4 年月度销量（48 个月，销售额+折扣率+气温）',
+      datasetFields: '月份、销售额(万元)、折扣率(%)、平均气温(℃)、是否节假日',
+      process: [
+        '① pd.date_range() 设置时间索引，ts.set_index() 绑定日期',
+        '② seasonal_decompose(ts, model="additive", period=12) 分解趋势/季节/残差',
+        '③ ADF 检验：p=0.32（非平稳）→ 一阶差分 → p=0.001（平稳）',
+        '④ ACF/PACF 确定 p=2, q=2，训练 ARIMA(2,1,2)',
+        '⑤ 滚动预测未来 12 个月，MAPE=8.3%（预测精度良好）'
+      ],
+      visualizations: [
+        '原始序列 vs 趋势成分折线图（揭示 3 月/8 月双峰季节性）',
+        '季节性成分热力图（12×1 月份系数，6-8 月为旺季）',
+        '未来 12 个月预测折线图（附 95% 置信区间阴影带）'
+      ],
+      conclusions: [
+        '长期趋势：年均增长 15%，预计 2025 年月销突破 ¥180 万',
+        '季节性：6-8 月为旺季（系数 +30%），1-2 月为淡季（系数 -25%）',
+        '残差均值≈0，无系统性偏差，模型拟合良好',
+        'ARIMA 预测 MAPE=8.3%，比简单均值法（MAPE=18%）精度提升一倍以上'
+      ],
+      businessInsight: '根据季节性规律，建议在淡季（1-2 月）提前备货控制在 ¥80 万以下，旺季（6-8 月）备货提升至 ¥160 万，减少库存积压风险。'
     }
   ]);
 
@@ -423,33 +641,88 @@ export default function Home() {
             {projects.map((project) => {
               const IconComponent = project.icon;
               const colors = colorSchemes[project.color as keyof typeof colorSchemes];
-              
               return (
-                <div key={project.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                  {/* 图标区域（渐变背景 + 大图标） */}
-                  <div className={`h-48 relative overflow-hidden bg-gradient-to-br ${colors.gradient} flex flex-col items-center justify-center`}>
-                    <IconComponent className="w-20 h-20 text-white mb-3" />
-                    <span className="text-white text-xl font-bold">{project.name}</span>
+                <div key={project.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                  {/* 顶部渐变区：大图标 + 名称 */}
+                  <div className={`h-36 relative overflow-hidden bg-gradient-to-br ${colors.gradient} flex flex-col items-center justify-center`}>
+                    <IconComponent className="w-16 h-16 text-white mb-2" />
+                    <span className="text-white text-lg font-bold">{project.name}</span>
+                    <span className="absolute top-3 right-3 bg-white bg-opacity-20 text-white text-xs px-2 py-0.5 rounded-full backdrop-blur-sm">{project.level}</span>
                   </div>
-                  
-                  <div className="p-6">
-                    <div className="flex items-center mb-3">
-                      <div className={`w-10 h-10 rounded-lg ${colors.bg} flex items-center justify-center mr-3`}>
-                        <IconComponent className={`w-6 h-6 ${colors.text}`} />
-                      </div>
-                      <h3 className="text-xl font-bold text-blue-800">{project.name}</h3>
+
+                  <div className="p-5 flex flex-col flex-1">
+                    {/* 数据集信息 */}
+                    <div className={`${colors.bg} rounded-lg p-3 mb-3`}>
+                      <p className={`text-xs font-medium ${colors.text} mb-0.5`}>📊 数据集</p>
+                      <p className="text-gray-700 text-xs leading-relaxed">{project.dataset}</p>
+                      <p className="text-gray-400 text-xs mt-0.5">{project.datasetFields}</p>
                     </div>
-                    <p className="text-gray-600 mb-4 text-sm leading-relaxed">{project.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
+
+                    {/* 分析流程（展示前 2 步）*/}
+                    <div className="mb-3">
+                      <p className="text-xs font-semibold text-gray-500 mb-1.5">⚙️ 分析流程</p>
+                      <div className="space-y-1">
+                        {project.process.slice(0, 2).map((step, i) => (
+                          <p key={i} className="text-xs text-gray-600 leading-snug">
+                            <span className={`font-semibold ${colors.text}`}>{step.split('）')[0]}）</span>
+                            {step.split('）')[1]}
+                          </p>
+                        ))}
+                        {project.process.length > 2 && (
+                          <p className="text-xs text-gray-400 italic">+{project.process.length - 2} 步分析…</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* 可视化图表 */}
+                    <div className="mb-3">
+                      <p className="text-xs font-semibold text-gray-500 mb-1.5">📈 产出图表</p>
+                      <div className="flex flex-wrap gap-1">
+                        {project.visualizations.slice(0, 3).map((v, i) => (
+                          <span key={i} className={`${colors.bg} ${colors.text} px-2 py-0.5 rounded text-xs`}>{v.split('（')[0]}</span>
+                        ))}
+                        {project.visualizations.length > 3 && (
+                          <span className="text-xs text-gray-400">+{project.visualizations.length - 3}</span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* 核心结论 */}
+                    <div className="mb-3">
+                      <p className="text-xs font-semibold text-gray-500 mb-1.5">💡 核心结论</p>
+                      <div className="space-y-0.5">
+                        {project.conclusions.slice(0, 2).map((c, i) => (
+                          <p key={i} className="text-xs text-gray-700 leading-snug flex items-start">
+                            <span className="text-green-500 mr-1 flex-shrink-0">✓</span>
+                            {c.length > 50 ? c.substring(0, 50) + '…' : c}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* 业务价值（强调区） */}
+                    <div className="bg-gradient-to-r from-gray-50 to-white border border-gray-100 rounded-lg p-2.5 mb-4">
+                      <p className="text-xs text-gray-600 leading-snug">
+                        <span className="font-semibold text-gray-700">→ 业务价值：</span>
+                        {project.businessInsight.length > 60
+                          ? project.businessInsight.substring(0, 60) + '…'
+                          : project.businessInsight}
+                      </p>
+                    </div>
+
+                    {/* 技术标签 */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
                       {project.tags.map((tag, index) => (
-                        <span key={index} className={`${colors.bg} ${colors.text} px-2 py-1 rounded text-xs font-medium`}>{tag}</span>
+                        <span key={index} className={`${colors.bg} ${colors.text} px-2 py-0.5 rounded text-xs font-medium`}>{tag}</span>
                       ))}
                     </div>
-                    <div className="flex space-x-2">
-                      <a href={`/project/${project.id}`} className="flex-1 text-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+
+                    {/* 操作按钮 */}
+                    <div className="flex space-x-2 mt-auto">
+                      <a href={`/project/${project.id}`} className="flex-1 text-center bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
                         教学教程
                       </a>
-                      <a href={`/practice/${project.id}`} className="flex-1 text-center bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+                      <a href={`/practice/${project.id}`} className="flex-1 text-center bg-green-600 text-white px-3 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
                         实训练习
                       </a>
                     </div>
