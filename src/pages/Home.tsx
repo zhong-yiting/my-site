@@ -414,11 +414,14 @@ export default function Home() {
       <nav className="bg-white shadow-md fixed w-full z-10">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="text-xl font-bold text-blue-600">钟依廷的个人页面</div>
-          <div className="hidden md:flex space-x-4 text-sm">
+          <div className="hidden md:flex space-x-3 text-sm">
             <a href="#home" className="text-blue-600 hover:text-blue-800">首页</a>
+            <a href="#education" className="text-blue-600 hover:text-blue-800">学习背景</a>
             <a href="#skills" className="text-blue-600 hover:text-blue-800">技能</a>
+            <a href="#highlights" className="text-blue-600 hover:text-blue-800">能力亮点</a>
             <a href="#honors" className="text-blue-600 hover:text-blue-800">荣誉</a>
             <a href="#experience" className="text-blue-600 hover:text-blue-800">实践</a>
+            <a href="#career" className="text-blue-600 hover:text-blue-800">职业规划</a>
             <a href="#projects" className="text-blue-600 hover:text-blue-800">训练项目</a>
             <a href="#contact" className="text-blue-600 hover:text-blue-800">联系我</a>
           </div>
@@ -436,10 +439,18 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="md:ml-8 text-center md:text-left">
+            <div className="md:ml-8 text-center md:text-left md:flex-1">
               <h1 className="text-3xl md:text-4xl font-bold mb-2">钟依廷</h1>
-              <p className="text-xl mb-4">广东科学技术职业学院</p>
-              <p className="text-lg mb-6">商学院 · 商务数据分析与应用专业</p>
+              <p className="text-xl mb-2 opacity-95">广东科学技术职业学院 · 商学院</p>
+              <p className="text-lg mb-4 opacity-85">商务数据分析与应用专业 · 在校大三学生</p>
+
+              {/* 学习背景标签 */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="bg-white bg-opacity-15 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">🎓 核心课程：Python / 统计分析 / 数据可视化 / 数据库</span>
+                <span className="bg-white bg-opacity-15 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">📚 在校课程平均成绩：85+</span>
+                <span className="bg-white bg-opacity-15 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">🏆 全国大学生市调大赛省二等奖</span>
+              </div>
+
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Python</span>
                 <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">数据可视化</span>
@@ -448,19 +459,103 @@ export default function Home() {
                 <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">数据采集</span>
                 <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">供应链分析</span>
               </div>
-              <p className="text-white mb-4">
+
+              <p className="text-white mb-4 leading-relaxed">
                 具有扎实的数据分析基础，熟练掌握Python编程、数据可视化和数据库应用技能，
+                擅长从真实业务数据中提取信息并转化为可执行的业务洞察。
+                已独立完成 10+ 个商务数据分析训练项目，
                 具备较强的问题解决能力和团队协作精神，
                 目标成为一名优秀的商务数据分析专员。
               </p>
-              <div className="flex space-x-4">
+              <div className="flex flex-wrap gap-3">
                 <a href="#projects" className="bg-white text-blue-800 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors">
-                  训练项目
+                  查看训练项目
                 </a>
-                <a href="#guestbook" className="bg-transparent border-2 border-white text-white px-4 py-2 rounded-lg font-medium hover:bg-white hover:text-blue-800 transition-colors">
-                  留言板
+                <a href="#highlights" className="bg-white text-blue-800 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                  能力亮点
+                </a>
+                <a href="#career" className="bg-transparent border-2 border-white text-white px-4 py-2 rounded-lg font-medium hover:bg-white hover:text-blue-800 transition-colors">
+                  我的职业规划
+                </a>
+                <a href="#contact" className="bg-transparent border-2 border-white text-white px-4 py-2 rounded-lg font-medium hover:bg-white hover:text-blue-800 transition-colors">
+                  联系我
                 </a>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 学习背景 */}
+      <section id="education" className="py-14 px-4 bg-gradient-to-b from-blue-50 to-white">
+        <div className="container mx-auto max-w-5xl">
+          <h2 className="text-3xl font-bold text-center mb-4 text-blue-800">学习背景</h2>
+          <p className="text-center text-gray-600 mb-10">系统化课程体系 + 真实项目训练，夯实商务数据分析基础</p>
+
+          {/* 学校主卡 */}
+          <div className="bg-white rounded-2xl shadow-md p-8 mb-6 border border-gray-100">
+            <div className="flex flex-col md:flex-row md:items-start gap-6">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-2xl font-bold flex-shrink-0 mx-auto md:mx-0">
+                🏫
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-xl font-bold text-gray-800 mb-1">广东科学技术职业学院 · 商学院</h3>
+                <p className="text-blue-600 font-medium mb-3">商务数据分析与应用专业 · 全日制专科（预计 2026 年毕业）</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <p className="text-sm font-semibold text-gray-700 mb-2">📖 核心课程（85+）</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {['Python 基础', '数据采集与处理', '数据分析技术', '数据可视化', '数据库原理', '统计学基础', '供应链数据分析', 'Excel 高级应用', 'SQL 查询'].map((c, i) => (
+                        <span key={i} className="bg-blue-50 text-blue-700 px-2 py-0.5 rounded text-xs">{c}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-700 mb-2">🛠 实训项目</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {['电商销售预测', '客户 RFM 分群', 'AB 测试分析', '购物篮关联规则', '门店运营看板', '市场调研与报告'].map((c, i) => (
+                        <span key={i} className="bg-green-50 text-green-700 px-2 py-0.5 rounded text-xs">{c}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="pt-4 border-t border-gray-100">
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    <span className="font-semibold text-gray-800">学习方式：</span>
+                    课堂学习 + 课程实训 + 个人项目三位一体。课程理论打基础 → 课程实训练工具 → 独立项目做综合产出。
+                    日常使用 Jupyter Notebook / Pandas / Matplotlib / MySQL 完成作业和项目。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 自学路径 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+              <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center mb-3">
+                <span className="text-xl">📚</span>
+              </div>
+              <h4 className="font-bold text-gray-800 mb-2">自学教材与资源</h4>
+              <ul className="space-y-1.5 text-sm text-gray-600">
+                <li>• 《Python数据分析快速上手》—— 入门到实战</li>
+                <li>• Kaggle 平台 - 学习他人分析思路（EDA 经典项目）</li>
+                <li>• 掘金 / CSDN - 中文技术社区，快速排错</li>
+                <li>• Matplotlib 官方 Gallery - 学习可视化图表技巧</li>
+                <li>• Towards Data Science - 英文优质博文</li>
+              </ul>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+              <div className="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center mb-3">
+                <span className="text-xl">💡</span>
+              </div>
+              <h4 className="font-bold text-gray-800 mb-2">持续学习计划</h4>
+              <ul className="space-y-1.5 text-sm text-gray-600">
+                <li>• 每日刷题：Pandas / SQL 基础，保持手感</li>
+                <li>• 每周复盘：整理本周项目笔记，写成长记录</li>
+                <li>• 每月输出：完成 1 个完整数据分析项目并部署展示</li>
+                <li>• 长期目标：考取 1+X 商务数据分析中级证书</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -515,6 +610,83 @@ export default function Home() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* 能力亮点 */}
+      <section id="highlights" className="py-16 px-4 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl font-bold text-center mb-4 text-blue-800">能力亮点</h2>
+          <p className="text-center text-gray-600 mb-12">三大能力维度 + 量化成果，展示真实分析水平</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            {/* 硬技能 */}
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mr-3">
+                  <span className="text-2xl">💻</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-800">硬技能</h3>
+              </div>
+              <div className="space-y-2 text-sm text-gray-700">
+                <p><span className="font-semibold text-blue-700">Python</span>：熟练 pandas / numpy / matplotlib 做数据清洗与可视化</p>
+                <p><span className="font-semibold text-blue-700">SQL</span>：熟练多表 JOIN、聚合查询、窗口函数，能独立编写复杂查询</p>
+                <p><span className="font-semibold text-blue-700">Excel</span>：熟练使用 VLOOKUP、数据透视表、条件格式，制作分析报表</p>
+                <p><span className="font-semibold text-blue-700">统计分析</span>：描述统计、假设检验、相关性分析、AB 测试设计</p>
+                <p><span className="font-semibold text-blue-700">工具链</span>：Jupyter Notebook、Git、VS Code、基本命令行操作</p>
+              </div>
+            </div>
+
+            {/* 软技能 */}
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-100">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mr-3">
+                  <span className="text-2xl">🤝</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-800">软技能</h3>
+              </div>
+              <div className="space-y-2 text-sm text-gray-700">
+                <p><span className="font-semibold text-green-700">业务理解</span>：能将业务问题转化为可分析的数据问题</p>
+                <p><span className="font-semibold text-green-700">结构化思维</span>：拆解问题 → 提出假设 → 数据验证 → 得出结论</p>
+                <p><span className="font-semibold text-green-700">沟通表达</span>：分析结果清晰传达给非技术业务方</p>
+                <p><span className="font-semibold text-green-700">团队协作</span>：在实训项目中担任小组组长，协调分工</p>
+                <p><span className="font-semibold text-green-700">持续学习</span>：每日刷题、每周总结，保持进步节奏</p>
+              </div>
+            </div>
+
+            {/* 量化成果 */}
+            <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-6 border border-orange-100">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center mr-3">
+                  <span className="text-2xl">🏆</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-800">量化成果</h3>
+              </div>
+              <div className="space-y-2 text-sm text-gray-700">
+                <p><span className="font-semibold text-orange-700">10+</span> 完整商务数据分析项目（从取数到业务建议）</p>
+                <p><span className="font-semibold text-orange-700">8 种</span> 分析方法掌握（RFM、关联规则、聚类、AB 测试、时间序列、漏斗、帕累托、对比）</p>
+                <p><span className="font-semibold text-orange-700">3 份</span> 可落地业务建议报告（面向店长 / 运营岗位）</p>
+                <p><span className="font-semibold text-orange-700">1 份</span> 全国大学生市调大赛省二等奖</p>
+                <p><span className="font-semibold text-orange-700">独立搭建</span> 个人展示网站，部署到 Cloudflare Pages</p>
+              </div>
+            </div>
+          </div>
+
+          {/* 特色成就 */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { num: '10+', label: '完成项目', icon: '📊' },
+              { num: '85+', label: '课程平均成绩', icon: '📖' },
+              { num: '3', label: '项目获业务可落地建议', icon: '💡' },
+              { num: '24/7', label: '持续学习状态', icon: '⏰' }
+            ].map((item, i) => (
+              <div key={i} className="bg-white rounded-xl p-5 border border-gray-100 text-center shadow-sm hover:shadow-md transition-shadow">
+                <div className="text-3xl mb-2">{item.icon}</div>
+                <div className="text-2xl md:text-3xl font-bold text-blue-700 mb-1">{item.num}</div>
+                <div className="text-xs text-gray-500">{item.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -575,6 +747,120 @@ export default function Home() {
           <div className="mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-6 text-white text-center">
             <GraduationCap className="w-8 h-8 mx-auto mb-2 opacity-80" />
             <p className="text-sm opacity-90">在校持续积累实践经验，更多项目正在进行中…</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 职业规划 */}
+      <section id="career" className="py-16 px-4 bg-white">
+        <div className="container mx-auto max-w-5xl">
+          <h2 className="text-3xl font-bold text-center mb-4 text-blue-800">我的职业规划</h2>
+          <p className="text-center text-gray-600 mb-12">明确目标 + 阶段计划，持续成长为高价值数据分析师</p>
+
+          {/* 三阶段时间线 */}
+          <div className="space-y-6">
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
+              <div className="flex items-start gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                  0-1 年
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-gray-800 mb-2">短期目标：成为一名能独立产出分析结果的初级数据分析师</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-700">
+                    <div>
+                      <p className="font-semibold text-blue-700 mb-1">💼 岗位期望</p>
+                      <p>商务数据分析专员 / 运营数据分析师 / 零售电商数据分析岗</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-blue-700 mb-1">✍ 技能提升</p>
+                      <p>精通 SQL 复杂查询、掌握 BI 工具（Tableau/Power BI）、进阶 Python 数据分析</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-blue-700 mb-1">🎯 关键产出</p>
+                      <p>入职半年内能独立完成日/周/月报，快速响应业务方数据需求</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-blue-700 mb-1">🏅 考证计划</p>
+                      <p>考取 1+X 商务数据分析中级证书，为职业发展打基础</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-100">
+              <div className="flex items-start gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                  1-3 年
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-gray-800 mb-2">中期目标：成长为能驱动业务决策的中级数据分析师</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-700">
+                    <div>
+                      <p className="font-semibold text-green-700 mb-1">💼 能力进阶</p>
+                      <p>从「取数+报表」升级为「诊断型分析」，能独立完成专题分析并提出业务建议</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-green-700 mb-1">📐 方法论沉淀</p>
+                      <p>形成自己的分析框架（RFM、漏斗、归因、A/B、留存），可指导新人上手</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-green-700 mb-1">🤝 跨部门协作</p>
+                      <p>熟悉业务流程，与运营/产品/市场协作，让数据真正驱动决策</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-green-700 mb-1">📈 行业选择</p>
+                      <p>深耕零售/电商/快消行业，成为该领域有深度理解的业务型分析师</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-2xl p-6 border border-orange-100">
+              <div className="flex items-start gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                  3-5 年
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-gray-800 mb-2">长期目标：成为能定义问题、搭建指标体系的资深分析师 / 团队负责人</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-700">
+                    <div>
+                      <p className="font-semibold text-orange-700 mb-1">🧭 战略视野</p>
+                      <p>从被动取数转变为主动定义问题，发现业务增长点与风险点</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-orange-700 mb-1">📊 体系搭建</p>
+                      <p>设计业务核心指标体系，搭建数据看板与自动化报表</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-orange-700 mb-1">👥 团队协作</p>
+                      <p>带领 3-5 人小团队，建立数据分析 SOP，培养新人</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-orange-700 mb-1">🎓 持续精进</p>
+                      <p>持续学习机器学习、因果推断等进阶方法；考虑提升学历，攻读本科/硕士</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 职业定位宣言 */}
+          <div className="mt-10 bg-gradient-to-r from-blue-700 to-indigo-700 rounded-2xl p-8 text-white text-center shadow-lg">
+            <h3 className="text-xl md:text-2xl font-bold mb-3">我的职业定位</h3>
+            <p className="text-base md:text-lg leading-relaxed opacity-95 max-w-3xl mx-auto">
+              做一个「懂业务的数据分析人」—— 不只是取数做表，而是用数据发现问题、提出方案、推动落地，
+              让每一份分析都能带来实际业务价值。我相信数据分析的终极价值是让更好的决策更快发生。
+            </p>
+            <div className="mt-5 flex flex-wrap justify-center gap-3 text-sm">
+              <span className="bg-white bg-opacity-20 backdrop-blur-sm px-4 py-1.5 rounded-full">#业务敏感</span>
+              <span className="bg-white bg-opacity-20 backdrop-blur-sm px-4 py-1.5 rounded-full">#扎实技术</span>
+              <span className="bg-white bg-opacity-20 backdrop-blur-sm px-4 py-1.5 rounded-full">#结构化思维</span>
+              <span className="bg-white bg-opacity-20 backdrop-blur-sm px-4 py-1.5 rounded-full">#持续学习</span>
+              <span className="bg-white bg-opacity-20 backdrop-blur-sm px-4 py-1.5 rounded-full">#沟通协作</span>
+            </div>
           </div>
         </div>
       </section>
