@@ -1,5 +1,18 @@
 import { useState } from 'react';
-import { Database, ShoppingCart, Users, BarChart3, GitBranch, Target, TrendingUp, Clock, PieChart, Activity } from 'lucide-react';
+import {
+  Database, ShoppingCart, Users, BarChart3, GitBranch, Target,
+  TrendingUp, PieChart, Activity, Code, LineChart,
+  Search, Package, Mail, MessageCircle, Download, Award, Trophy,
+  Briefcase, GraduationCap, Star, CheckCircle2
+} from 'lucide-react';
+
+const skillLevels: Record<string, number> = {
+  '精通': 95,
+  '熟练': 80,
+  '掌握': 70,
+  '熟悉': 60,
+  '了解': 45
+};
 
 const colorSchemes = {
   blue: { bg: 'bg-blue-100', text: 'text-blue-600', gradient: 'from-blue-500 to-blue-600' },
@@ -98,16 +111,98 @@ export default function Home() {
     }
   ]);
 
+  const [skills] = useState([
+    {
+      name: 'Python 编程',
+      level: '熟练',
+      icon: Code,
+      color: 'blue',
+      scenarios: ['数据分析脚本编写', '数据自动化处理', '爬虫采集', '利用 pandas / numpy 做批量清洗与统计'],
+      stack: ['Python', 'pandas', 'NumPy', 'requests']
+    },
+    {
+      name: '数据可视化',
+      level: '熟练',
+      icon: BarChart3,
+      color: 'orange',
+      scenarios: ['店铺经营指标看板', '消费者行为画像图', '市场趋势折线图', '向管理层汇报成果'],
+      stack: ['Matplotlib', 'Seaborn', 'Plotly', 'Excel 图表']
+    },
+    {
+      name: '数据库应用',
+      level: '掌握',
+      icon: Database,
+      color: 'green',
+      scenarios: ['商品订单表设计', '销售数据聚合查询', '多表连接统计', '日常报表数据源准备'],
+      stack: ['MySQL', 'SQL', '数据库建模', '索引优化']
+    },
+    {
+      name: '数据分析',
+      level: '熟练',
+      icon: LineChart,
+      color: 'indigo',
+      scenarios: ['AB 测试效果评估', '客户分群与 RFM 分析', '经营 KPI 监控', '撰写分析报告与建议'],
+      stack: ['描述统计', '假设检验', 'K-means', '回归分析']
+    },
+    {
+      name: '数据采集与处理',
+      level: '掌握',
+      icon: Search,
+      color: 'cyan',
+      scenarios: ['电商商品信息采集', '缺失值 / 异常值处理', '重复数据去重', '结构化非结构化数据转换'],
+      stack: ['网页抓取', '数据清洗', '格式规范化', '数据去重']
+    },
+    {
+      name: '供应链数据分析',
+      level: '熟悉',
+      icon: Package,
+      color: 'teal',
+      scenarios: ['库存周转分析', '补货建议', '供应商到货周期监控', '缺货与滞销 SKU 识别'],
+      stack: ['库存分析', '周转天数', '缺货率', '供应链 KPI']
+    }
+  ]);
+
+  const [certifications] = useState([
+    { title: '全国计算机等级考试', level: '二级 Python', year: '2025', icon: Award },
+    { title: '1+X 商务数据分析职业技能等级证书', level: '中级', year: '2025', icon: Award },
+    { title: '全国大学生市场调查与分析大赛', level: '省赛二等奖', year: '2025', icon: Trophy },
+    { title: '校级优秀学生奖学金', level: '二等奖学金', year: '2024', icon: Star }
+  ]);
+
+  const [experiences] = useState([
+    {
+      title: '校园销售数据分析实践',
+      period: '2025.03 - 2025.06',
+      desc: '以校园便利店真实销售数据为对象，使用 pandas 清洗 3 个月销售记录，完成商品热度排名与库存周转分析，输出 Excel 看板一份，识别出 5 个滞销 SKU。',
+      highlights: ['清洗约 8,000 条销售流水', '设计 12 项经营 KPI', '完成可视化看板 1 份']
+    },
+    {
+      title: '电商平台消费者行为分析实训',
+      period: '2024.10 - 2024.12',
+      desc: '基于课程提供的电商用户行为数据集，使用 Python 进行 RFM 客户分群，划分出 4 类客户群体并给出差异化运营建议，报告获课程优秀。',
+      highlights: ['完成 RFM 模型客户分群', '撰写 10 页分析报告', '提出 6 条运营建议']
+    },
+    {
+      title: '商务数据分析训练平台开发',
+      period: '2025.01 - 至今',
+      desc: '以个人身份搭建商务数据分析训练网站，覆盖数据清洗、AB 测试、客户聚类等 10 个项目，包含教学教程和实训练习，部署于 Cloudflare Pages。',
+      highlights: ['10 个训练项目', 'React + TypeScript 开发', '独立部署上线']
+    }
+  ]);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100">
       {/* 导航栏 */}
       <nav className="bg-white shadow-md fixed w-full z-10">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="text-xl font-bold text-blue-600">钟依廷的个人页面</div>
-          <div className="flex space-x-4">
+          <div className="hidden md:flex space-x-4 text-sm">
             <a href="#home" className="text-blue-600 hover:text-blue-800">首页</a>
+            <a href="#skills" className="text-blue-600 hover:text-blue-800">技能</a>
+            <a href="#honors" className="text-blue-600 hover:text-blue-800">荣誉</a>
+            <a href="#experience" className="text-blue-600 hover:text-blue-800">实践</a>
             <a href="#projects" className="text-blue-600 hover:text-blue-800">训练项目</a>
-            <a href="#guestbook" className="text-blue-600 hover:text-blue-800">留言板</a>
+            <a href="#contact" className="text-blue-600 hover:text-blue-800">联系我</a>
           </div>
         </div>
       </nav>
@@ -149,6 +244,172 @@ export default function Home() {
                 </a>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 技能熟练度与应用场景 */}
+      <section id="skills" className="py-16 px-4 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl font-bold text-center mb-4 text-blue-800">专业技能</h2>
+          <p className="text-center text-gray-600 mb-12">按熟练度分级呈现，每个技能都有真实的应用场景说明</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {skills.map((skill, idx) => {
+              const SkillIcon = skill.icon;
+              const colors = colorSchemes[skill.color as keyof typeof colorSchemes];
+              const percent = skillLevels[skill.level] || 60;
+              return (
+                <div key={idx} className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-center mb-4">
+                    <div className={`w-12 h-12 rounded-lg ${colors.bg} flex items-center justify-center mr-4`}>
+                      <SkillIcon className={`w-6 h-6 ${colors.text}`} />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-gray-800">{skill.name}</h3>
+                      <div className="flex items-center mt-1">
+                        <span className="text-sm text-gray-500 mr-2">熟练度：</span>
+                        <span className={`text-sm font-semibold ${colors.text}`}>{skill.level}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-4">
+                    <div
+                      className={`h-full bg-gradient-to-r ${colors.gradient} rounded-full transition-all`}
+                      style={{ width: `${percent}%` }}
+                    ></div>
+                  </div>
+                  <div className="mb-3">
+                    <p className="text-xs text-gray-500 mb-2">应用场景</p>
+                    <ul className="space-y-1.5">
+                      {skill.scenarios.map((s, i) => (
+                        <li key={i} className="flex items-start text-sm text-gray-700">
+                          <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
+                          <span>{s}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {skill.stack.map((tag, i) => (
+                      <span key={i} className={`${colors.bg} ${colors.text} px-2 py-0.5 rounded text-xs font-medium`}>{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 证件与荣誉 */}
+      <section id="honors" className="py-16 px-4 bg-gradient-to-b from-blue-50 to-white">
+        <div className="container mx-auto max-w-5xl">
+          <h2 className="text-3xl font-bold text-center mb-4 text-blue-800">证件 & 荣誉</h2>
+          <p className="text-center text-gray-600 mb-12">职业背书与在校荣誉，展示学习与竞赛成果</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {certifications.map((item, idx) => {
+              const ItemIcon = item.icon;
+              return (
+                <div key={idx} className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-200 text-center">
+                  <div className="w-14 h-14 mx-auto rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center mb-3">
+                    <ItemIcon className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="font-semibold text-gray-800 text-sm mb-1">{item.title}</h3>
+                  <p className="text-orange-600 text-sm font-medium mb-1">{item.level}</p>
+                  <p className="text-xs text-gray-400">{item.year}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 实践经历 */}
+      <section id="experience" className="py-16 px-4 bg-white">
+        <div className="container mx-auto max-w-5xl">
+          <h2 className="text-3xl font-bold text-center mb-4 text-blue-800">实践经历</h2>
+          <p className="text-center text-gray-600 mb-12">用真实项目展现数据分析实战能力</p>
+          <div className="space-y-5">
+            {experiences.map((exp, idx) => (
+              <div key={idx} className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3">
+                  <div className="flex items-start">
+                    <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mr-4 flex-shrink-0">
+                      <Briefcase className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-800">{exp.title}</h3>
+                      <p className="text-sm text-blue-600 mt-0.5">{exp.period}</p>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-gray-700 leading-relaxed text-sm mb-4 md:ml-14">{exp.desc}</p>
+                <div className="flex flex-wrap gap-2 md:ml-14">
+                  {exp.highlights.map((h, i) => (
+                    <span key={i} className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">
+                      ✓ {h}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-6 text-white text-center">
+            <GraduationCap className="w-8 h-8 mx-auto mb-2 opacity-80" />
+            <p className="text-sm opacity-90">在校持续积累实践经验，更多项目正在进行中…</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 求职配套信息 - 联系方式 + 简历下载 */}
+      <section id="contact" className="py-16 px-4 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div className="container mx-auto max-w-5xl">
+          <h2 className="text-3xl font-bold text-center mb-4 text-blue-800">联系方式</h2>
+          <p className="text-center text-gray-600 mb-12">欢迎招聘方联系，期待与贵公司共同成长</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+            <div className="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+              <div className="w-14 h-14 mx-auto rounded-full bg-blue-100 flex items-center justify-center mb-3">
+                <Mail className="w-7 h-7 text-blue-600" />
+              </div>
+              <h3 className="font-semibold text-gray-800 mb-1">联系邮箱</h3>
+              <a href="mailto:2985384232@qq.com" className="text-blue-600 text-sm hover:text-blue-800 break-all">
+                2985384232@qq.com
+              </a>
+            </div>
+            <div className="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+              <div className="w-14 h-14 mx-auto rounded-full bg-green-100 flex items-center justify-center mb-3">
+                <MessageCircle className="w-7 h-7 text-green-600" />
+              </div>
+              <h3 className="font-semibold text-gray-800 mb-1">微信联系</h3>
+              <p className="text-gray-700 text-sm">扫码或搜索手机号添加</p>
+              <p className="text-green-600 text-xs mt-1 font-medium">请备注"应聘 · 岗位名称"</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+              <div className="w-14 h-14 mx-auto rounded-full bg-indigo-100 flex items-center justify-center mb-3">
+                <Download className="w-7 h-7 text-indigo-600" />
+              </div>
+              <h3 className="font-semibold text-gray-800 mb-1">简历下载</h3>
+              <a
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="inline-block text-indigo-600 text-sm hover:text-indigo-800 underline"
+              >
+                点击下载 PDF 简历
+              </a>
+              <p className="text-xs text-gray-400 mt-1">（如需简历请邮件索取）</p>
+            </div>
+          </div>
+          <div className="bg-white rounded-xl p-8 text-center shadow-sm border border-gray-200">
+            <h3 className="text-xl font-bold text-blue-800 mb-2">求职意向</h3>
+            <p className="text-gray-700 mb-4">
+              商务数据分析专员 · 数据分析师助理 · 运营数据专员 · 市场数据分析岗
+            </p>
+            <div className="flex flex-wrap gap-2 justify-center mb-4">
+              {['全职', '实习', '广州/深圳/珠海', '数据分析方向'].map((tag, i) => (
+                <span key={i} className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">{tag}</span>
+              ))}
+            </div>
+            <p className="text-sm text-gray-500">更多材料 / 作品集请发邮件索取，感谢您的阅读 ❤</p>
           </div>
         </div>
       </section>
