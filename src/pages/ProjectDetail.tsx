@@ -102,6 +102,20 @@ const projectsData = {
       '工具链：Pandas(基础) + NumPy(数值计算) + sklearn.preprocessing(标准化) + re(正则) + Great Expectations(高级验证)',
       '常见陷阱：过度填充导致偏差、删除过多导致样本减少、未考虑业务含义的盲目清洗、忽略数据泄露风险'
     ],
+    references: [
+      '【书籍】《Python数据分析快速上手》(王靖等，清华大学出版社2024) - Python数据分析入门经典',
+      '【书籍】《Python Data Cleaning Cookbook》(Michael Walker, Packt 2024) - 数据清洗进阶指南(英文)',
+      '【书籍】《Pandas Workout》(Reuven Lerner, Manning 2024) - 200个Pandas练习题',
+      '【书籍】《Python财经大数据基础与应用》(乔冰琴，东北财经大学出版社2024) - 财经领域数据分析实战',
+      '【在线课程】Kaggle - Python基础和数据清洗微课程',
+      '【文档】Pandas官方文档 - pandas.pydata.org/docs/',
+      '【文档】NumPy官方文档 - numpy.org/doc/',
+      '【工具】Great Expectations - 数据质量验证框架',
+      '【练习平台】Kaggle Dataset - 真实数据集清洗练习',
+      '【练习平台】DataCamp - Data Cleaning in Python课程',
+      '【网站】CSDN数据分析专栏 - 中文数据分析教程',
+      '【网站】Towards Data Science - 英文数据分析博客'
+    ],
     codeExample: `import pandas as pd
 import numpy as np
 
@@ -230,6 +244,19 @@ print(f"数值列统计:\n{df[['年龄', '订单金额']].describe().round(2)}")
       '高级应用：时序关联分析(季节性变化)、多维度关联(用户分层+商品)、负关联规则(避免组合)、序列模式挖掘(购买顺序)',
       '工具链：mlxtend.frequent_patterns(入门) + pyfpgrowth(进阶) + Spark MLlib FPGrowth(大规模) + 自研引擎'
     ],
+    references: [
+      '【书籍】《数据挖掘算法原理与实现》(王振武，清华大学出版社2023) - 关联规则挖掘详细讲解',
+      '【书籍】《推荐系统实践》(项亮) - 协同过滤与关联推荐实战',
+      '【书籍】《R语言数据挖掘》(Bater Makhabel) - R语言实现购物篮分析',
+      '【在线课程】CSDN - Apriori关联规则算法详解',
+      '【文档】mlxtend官方文档 - mlxtend.api.frequent_patterns',
+      '【文档】mlxtend apriori - mlxtend.api.apriori',
+      '【文档】mlxtend association_rules - mlxtend.api.association_rules',
+      '【工具】mlxtend - Python关联规则挖掘库',
+      '【练习平台】UCI超市数据集 - 真实零售交易数据',
+      '【网站】CSDN - 购物篮分析实战案例',
+      '【网站】Towards Data Science - Market Basket Analysis Guide'
+    ],
     codeExample: `import pandas as pd
 
 # ===== 入门级：基础购物篮分析 =====
@@ -351,11 +378,24 @@ for _, row in top_rules.iterrows():
       '聚类算法对比：K-Means(球形簇,需预设K,快) vs 层次聚类(任意形状,解释性强,O(N²)慢) vs DBSCAN(自动发现K,识别噪声)',
       '客户画像：聚类后需为每个簇生成业务标签(高价值/流失风险/价格敏感/低频高质等)',
       '常用客户特征：消费金额(均值/总额/最大单笔)、消费频次(月订单数)、品类偏好(Top3品类占比)、价格敏感度(折扣使用率)、复购率、活跃度',
-      '聚类评估：轮廓系数[-1,1]越接近1越好、Calinski-Harabasz指数(越大越好)、ARI(有标签时用)',
+      '聚类评估：轮廓系数[-1,1]越接近1越好、Calinski-Harabasz指数(越大越好)、Adjusted Rand Index(有标签时)',
       '降维可视化：PCA将多维特征降为2D/3D，用散点图观察聚类效果，t-SNE/UMAP适合非线性降维',
       '最佳实践：先特征工程再聚类、尝试多个K值选最优、聚类后做业务解读、定期重新训练模型跟踪变化',
       '常见陷阱：未标准化导致距离失真、K值选择主观、将聚类结果当作绝对真理、忽略特征相关性',
       '工具链：sklearn.cluster(KMeans/DBSCAN) + sklearn.preprocessing(标准化) + sklearn.metrics(评估) + scipy.cluster.hierarchy(层次)'
+    ],
+    references: [
+      '【书籍】《Python数据分析与挖掘实战》(机械工业出版社) - K-Means客户聚类分析实战',
+      '【书籍】《Python数据科学手册》(Jake VanderPlas) - K-Means聚类算法详解',
+      '【书籍】《机器学习sklearn实战教程》- 聚类分析与KMeans实战',
+      '【在线课程】CSDN - K-Means聚类算法从理论到实战',
+      '【文档】scikit-learn KMeans - sklearn.cluster.KMeans',
+      '【文档】scikit-learn DBSCAN - sklearn.cluster.DBSCAN',
+      '【工具】scikit-learn - Python机器学习库',
+      '【练习平台】UCI客户数据集 - 真实客户分群数据',
+      '【练习平台】Kaggle - Customer Segmentation竞赛',
+      '【网站】Data School - scikit-learn入门教程',
+      '【网站】Python Data Science Handbook - 在线书籍'
     ],
     codeExample: `import pandas as pd
 import numpy as np
@@ -488,6 +528,21 @@ print(df['客户类型'].value_counts())`
       '数据讲故事：背景→问题→数据洞察→结论→行动建议的叙事结构；用图表序列引导读者理解复杂问题',
       '工具链：matplotlib(基础) + seaborn(统计) + plotly(交互) + pyecharts(ECharts Python版) + Tableau/Power BI(商业BI)'
     ],
+    references: [
+      '【书籍】《数据可视化》(蒋国银等，机械工业出版社2024) - Python可视化工具全景',
+      '【书籍】《Python数据可视化》(钟雪灵等，高等教育出版社2024) - matplotlib/seaborn/plotly/pyecharts',
+      '【书籍】《Python数据分析与可视化实践》(孙玉林，清华大学出版社2024) - 多个可视化库实战',
+      '【书籍】《Python数据可视化与科学计算可视化》(董付国，清华大学出版社2026) - Matplotlib进阶',
+      '【在线课程】Matplotlib官方教程 - matplotlib.org/tutorials/',
+      '【文档】Seaborn官方文档 - seaborn.pydata.org/',
+      '【文档】Plotly Python文档 - plotly.com/python/',
+      '【工具】Matplotlib - Python基础绘图库',
+      '【工具】Seaborn - 统计可视化库',
+      '【工具】Plotly - 交互式可视化库',
+      '【工具】Pyecharts - ECharts Python实现',
+      '【练习平台】Matplotlib Gallery - 官方图表示例',
+      '【网站】Python Graph Gallery - 600+图表示例代码'
+    ],
     codeExample: `import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -606,6 +661,19 @@ plt.show()`
       '稳定性验证：多次运行不同随机种子，观察各样本被分到同一簇的比例，高稳定性意味着结果可靠',
       '业务解读：聚类后必须进行业务命名(如「价格敏感型」「高价值低频」)，否则无法指导业务决策',
       '工具链：scipy.cluster.hierarchy(层次) + sklearn.cluster(DBSCAN/KMeans) + sklearn.metrics(评估) + faiss(大规模相似度搜索)'
+    ],
+    references: [
+      '【书籍】《数据挖掘算法原理与实现》(王振武，清华大学出版社2023) - 层次聚类和DBSCAN详解',
+      '【书籍】《Python机器学习：基础、算法与实战》(孙玉林，化学工业出版社2023) - sklearn聚类实战',
+      '【书籍】《Python数据分析与可视化实践》(孙玉林，清华大学出版社2024) - DBSCAN聚类应用',
+      '【在线课程】SciPy层次聚类文档 - docs.scipy.org/doc/scipy/',
+      '【文档】scikit-learn DBSCAN - sklearn.cluster.DBSCAN',
+      '【文档】scikit-learn AgglomerativeClustering - sklearn.cluster.AgglomerativeClustering',
+      '【工具】SciPy - 科学计算库(层次聚类)',
+      '【工具】scikit-learn - 聚类算法集合',
+      '【练习平台】scikit-learn聚类示例 - 多种聚类算法对比',
+      '【网站】SciPy Hierarchical Clustering Tutorial',
+      '【网站】DBSCAN Python Implementation Guide'
     ],
     codeExample: `import numpy as np
 import matplotlib.pyplot as plt
@@ -730,6 +798,20 @@ print(f'DBSCAN轮廓系数: {silhouette_score(X_scaled, labels_db):.3f}')`
       '常见陷阱：偷看数据偷看(p-hacking)、样本量不足、多重比较不修正、混淆变量、幸存者偏差、季节性影响',
       '工具链：scipy.stats(基础检验) + statsmodels(高级统计) + Plotly/Dash(可视化) + Optimizely/VWO(商业平台)'
     ],
+    references: [
+      '【书籍】《AB测试与实验》(王晔博士) - 硅谷A/B测试方法论',
+      '【书籍】《Statistics for Data Science and Analytics》(Wiley 2024) - 数据科学统计学基础',
+      '【书籍】《数据分析实战》(汝思恒，清华大学出版社2024) - AB测试实战案例',
+      '【书籍】《Statistical Methods in Online A/B Testing》(Georgi Georgiev) - 在线A/B测试统计学(英文)',
+      '【书籍】《Trustworthy Online Controlled Experiments》(Ron Kohavi等) - 实验的权威指南(英文)',
+      '【在线课程】Coursera - A/B Testing Statistics',
+      '【文档】scipy.stats官方文档',
+      '【工具】Evan\'s Awesome A/B Tools - 在线样本量计算器',
+      '【工具】Optimizely - 商业A/B测试平台',
+      '【练习平台】Kaggle - A/B Testing数据集',
+      '【网站】abtestcalculator.com - 在线AB测试计算器',
+      '【网站】analytics-toolkit.com - 统计学计算工具'
+    ],
     codeExample: `from scipy.stats import norm
 import numpy as np
 
@@ -844,6 +926,20 @@ print(f"显著性: {'✅ 显著' if p_value < 0.05 else '❌ 不显著'}")`
       '同店同比(SSSG)：剔除新店影响的真实增长，Same-Store Sales Growth反映核心经营健康度',
       '仪表盘设计：KPI卡片(核心指标+同环比) + 趋势图(时间变化) + 排行榜(Top贡献) + 分布分析(结构占比)',
       '工具链：Pandas(数据处理) + NumPy(统计计算) + Matplotlib/Seaborn(可视化) + Excel(传统报表) + BI工具(商业智能)'
+    ],
+    references: [
+      '【书籍】《数据分析方法论和业务实战》(陈友洋，电子工业出版社2022) - 数据分析方法与业务实战',
+      '【书籍】《数据分析之道》(李渝方，电子工业出版社) - 数据思维与业务实战',
+      '【书籍】《数据分析咖哥十话》(黄佳) - 数据分析实战指南',
+      '【在线课程】网易云课堂 - 电商数据运营分析',
+      '【文档】Pandas数据分析文档',
+      '【文档】NumPy统计计算文档',
+      '【工具】FineBI - 商业智能分析工具',
+      '【工具】Tableau - 数据可视化BI工具',
+      '【练习平台】淘宝/天猫生意参谋 - 电商数据分析',
+      '【练习平台】京东商智 - 店铺数据分析',
+      '【网站】CSDN数据分析专栏 - 店铺经营分析案例',
+      '【网站】增长黑客 - 数据驱动增长案例'
     ],
     codeExample: `import pandas as pd
 import numpy as np
@@ -969,6 +1065,21 @@ plt.tight_layout(); plt.show()`
       '行为数据埋点：PV/UV、点击、加购、收藏、下单、支付、退款、搜索、评论、分享；定义事件名+属性+时间戳',
       '工具链：Pandas(特征工程) + Scikit-learn(聚类/推荐) + XGBoost(预测) + Surprise(推荐系统) + PySpark(大规模)'
     ],
+    references: [
+      '【书籍】《用户画像：方法论与工程化解决方案》(赵宏田，机械工业出版社2020) - 用户画像系统构建',
+      '【书籍】《数据分析之道》(李渝方，电子工业出版社) - AARRR模型详解',
+      '【书籍】《数据分析方法论和业务实战》(陈友洋，电子工业出版社2022) - 用户生命周期分析',
+      '【书籍】《数据分析咖哥十话》(黄佳) - RFM与AARRR实战',
+      '【在线课程】CSDN - RFM模型实战课程',
+      '【文档】Surprise库文档 - 支持向量机协同过滤',
+      '【文档】XGBoost文档 - 梯度提升树',
+      '【工具】Pandas - Python数据分析库',
+      '【工具】Surprise - 推荐系统库',
+      '【练习平台】MovieLens数据集 - 电影推荐数据',
+      '【练习平台】RecSys Challenge - 推荐系统竞赛',
+      '【网站】GrowingIO - 用户行为分析工具',
+      '【网站】神策数据 - 用户行为分析平台'
+    ],
     codeExample: `import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -1091,6 +1202,21 @@ print(users['客户类型'].value_counts())`
       '竞争雷达图：多维度(产品力/价格力/渠道力/品牌力/服务力)对比自身与竞品，优劣势一目了然',
       '工具链：Pandas(数据处理) + NumPy/SciPy(统计) + Matplotlib(可视化) + Scikit-learn(预测模型)'
     ],
+    references: [
+      '【书籍】《市场营销学》 - 经典营销理论',
+      '【书籍】《竞争战略》(迈克尔·波特) - 波特五力模型',
+      '【书籍】《数据分析方法论和业务实战》(陈友洋，电子工业出版社2022) - PEST/SWOT/STP分析',
+      '【书籍】《数据分析之道》(李渝方，电子工业出版社) - 营销分析方法',
+      '【在线课程】网易云课堂 - 市场分析与竞争战略',
+      '【文档】Pandas数据分析文档',
+      '【文档】NumPy/SciPy统计文档',
+      '【工具】艾瑞咨询 - 行业研究报告',
+      '【工具】QuestMobile - 移动互联网数据',
+      '【练习平台】国家统计局 - 宏观经济数据',
+      '【练习平台】行业协会报告 - 行业分析数据',
+      '【网站】前瞻数据库 - 各行业数据',
+      '【网站】CSDN市场分析专栏 - 实战案例'
+    ],
     codeExample: `import pandas as pd
 import numpy as np
 
@@ -1209,6 +1335,22 @@ print(f"CR3: {sum(shares[:3])}%")`
       '最佳实践：80/20训练测试集(时间切分不随机)、滚动验证评估、多模型对比、置信区间量化不确定性、定期重训练',
       '常见陷阱：过度拟合历史噪声、忽略季节性变化、不做差分直接建模非平稳序列、随机切分破坏时间关系、忽略节假日/特殊事件',
       '工具链：statsmodels(ARIMA/季节性分解) + prophet(Prophet) + scikit-learn(特征工程) + TensorFlow/PyTorch(深度学习)'
+    ],
+    references: [
+      '【书籍】《Python机器学习：基础、算法与实战》(孙玉林，化学工业出版社2023) - ARIMA/SARIMA实战',
+      '【书籍】《Python时序预测实战》(Packt出版) - Prophet时间序列预测(英文)',
+      '【书籍】《Python数据分析与可视化实践》(孙玉林，清华大学出版社2024) - 时间序列分析',
+      '【书籍】《Forecasting Time Series Data with Prophet》(Greg Rafferty, Packt 2023) - Prophet第二版(英文)',
+      '【在线课程】Coursera - Sequences, Time Series and Prediction',
+      '【在线课程】Practical Time Series Analysis - Python与Jupyter实战',
+      '【文档】statsmodels官方文档 - statsmodels.org/',
+      '【文档】Prophet官方文档 - facebook.github.io/prophet/',
+      '【工具】Prophet - Facebook时间序列预测库',
+      '【工具】statsmodels - Python统计模型库',
+      '【练习平台】Kaggle时间序列竞赛',
+      '【练习平台】M5 Forecasting - Walmart销售预测',
+      '【网站】Time Series Analysis Python Tutorial',
+      '【网站】Prophet Quick Start Guide'
     ],
     codeExample: `import pandas as pd
 import numpy as np
@@ -1433,6 +1575,36 @@ export default function ProjectDetail() {
                 <span className="text-gray-700">{point}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 参考资料 */}
+      <section className="py-12 px-4 bg-gradient-to-r from-blue-50 to-indigo-50">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-2xl font-bold text-gray-800 mb-8 flex items-center">
+            <BookOpen className="w-6 h-6 mr-2 text-blue-600" />
+            自学资源与教材
+          </h2>
+
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <div className="space-y-3">
+              {project.references && project.references.map((ref, index) => (
+                <div key={index} className="flex items-start hover:bg-blue-50 p-3 rounded-lg transition-colors">
+                  <div className={`w-8 h-8 rounded-full ${colorClasses[project.color]} flex items-center justify-center mr-3 flex-shrink-0`}>
+                    <span className="text-white font-bold text-sm">{index + 1}</span>
+                  </div>
+                  <span className="text-gray-700">{ref}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
+              <p className="text-sm text-gray-700">
+                <strong>💡 学习建议：</strong>优先学习标注"入门"的资源，逐步进阶到"进阶"和"高级"内容。
+                多做练习，理论与实践相结合。
+              </p>
+            </div>
           </div>
         </div>
       </section>
