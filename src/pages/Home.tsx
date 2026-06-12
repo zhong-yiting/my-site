@@ -702,7 +702,7 @@ print(f"MAPE：{mape:.1f}%")  # 8.3%`,
             <div className="md:ml-8 text-center md:text-left md:flex-1">
               <h1 className="text-3xl md:text-4xl font-bold mb-2">钟依廷</h1>
               <p className="text-xl mb-2 opacity-95">广东科学技术职业学院 · 商学院</p>
-              <p className="text-lg mb-4 opacity-85">商务数据分析与应用专业 · 在校大三学生</p>
+              <p className="text-lg mb-4 opacity-85">商务数据分析与应用专业 · 在校大二学生</p>
 
               {/* 学习背景标签 */}
               <div className="flex flex-wrap gap-2 mb-4">
