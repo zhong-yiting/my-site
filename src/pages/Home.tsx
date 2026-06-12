@@ -818,6 +818,103 @@ print(f"MAPE：{mape:.1f}%")  # 8.3%`,
           </div>
         </div>
       </section>
+      {/* ====== 板块 3/4：实训项目（简洁卡片，详情在独立页面） ====== */}
+      <section id="projects" className="py-16 px-4 bg-gradient-to-b from-white to-blue-50">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl font-bold text-center mb-3 text-blue-800">商务数据分析训练项目</h2>
+          <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+            10 个核心项目，每个都包含<span className="text-blue-700 font-semibold">完整教程</span> + <span className="text-green-700 font-semibold">可运行代码实训练习</span>。
+            <span className="text-amber-600 font-semibold ml-1">⭐ 标记为标杆案例</span>
+          </p>
+
+          {/* 难度筛选 */}
+          <div className="flex flex-wrap justify-center gap-2 mb-10">
+            {LEVEL_FILTERS.map((lv) => {
+              const active = activeLevel === lv;
+              return (
+                <button
+                  key={lv}
+                  onClick={() => setActiveLevel(lv)}
+                  className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+                    active
+                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-200'
+                      : 'bg-white text-blue-700 border border-blue-200 hover:bg-blue-50'
+                  }`}
+                >
+                  {lv}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* 简洁项目卡片网格 */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+            {projects
+              .filter((p) => activeLevel === '全部' || p.level === activeLevel)
+              .map((project) => {
+                const IconComponent = project.icon;
+                const colors = colorSchemes[project.color as keyof typeof colorSchemes];
+                return (
+                  <div
+                    key={project.id}
+                    className={`group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 flex flex-col aspect-square ring-1 ${
+                      project.isShowcase ? 'ring-amber-300' : 'ring-gray-100'
+                    }`}
+                  >
+                    {/* 上半部分：图标 + 项目名（点击进入教程）*/}
+                    <a
+                      href={`/project/${project.id}`}
+                      className={`flex-1 relative overflow-hidden bg-gradient-to-br ${colors.gradient} flex flex-col items-center justify-center p-4 hover:opacity-95 transition-opacity`}
+                    >
+                      {project.isShowcase && (
+                        <span className="absolute top-2 left-2 bg-amber-400 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow z-10">⭐</span>
+                      )}
+                      <IconComponent className="w-14 h-14 text-white drop-shadow-lg transition-transform duration-500 group-hover:scale-110" />
+                      <p className="text-white text-sm font-bold mt-2 text-center line-clamp-2">{project.name}</p>
+                      <span className="absolute top-2 right-2 bg-white bg-opacity-25 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm">
+                        {project.level}
+                      </span>
+                    </a>
+
+                    {/* 下半部分：两个入口按钮 */}
+                    <div className="flex">
+                      <a
+                        href={`/project/${project.id}`}
+                        className="flex-1 text-xs bg-blue-50 text-blue-700 py-2 font-medium hover:bg-blue-100 transition-colors border-r border-blue-100 text-center"
+                      >
+                        📖 教程
+                      </a>
+                      <a
+                        href={`/practice/${project.id}`}
+                        className="flex-1 text-xs bg-green-50 text-green-700 py-2 font-medium hover:bg-green-100 transition-colors text-center"
+                      >
+                        💻 实训
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+
+          {/* 数据驱动思维小贴士 */}
+          <div className="mt-16 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 rounded-2xl p-8 text-white shadow-xl">
+            <h3 className="text-xl font-bold mb-5 text-center">💡 我的数据分析方法论</h3>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+              {[
+                { step: '① 定义问题', text: '先理解业务目标，把「店铺下滑」拆解为「访客 × 转化 × 客单」三大指标' },
+                { step: '② 获取数据', text: '结合 POS、用户行为日志、行业报告，构建多源数据集' },
+                { step: '③ 探索建模', text: 'K-Means 聚类、关联规则、ARIMA、A/B 测试，按问题选方法' },
+                { step: '④ 行动建议', text: '「数据 + 洞察 + 可执行方案」三位一体，驱动业务决策' },
+              ].map((item, i) => (
+                <div key={i} className="bg-white bg-opacity-15 rounded-xl p-4 backdrop-blur-sm hover:bg-opacity-20 transition-colors">
+                  <p className="font-bold mb-2 text-base">{item.step}</p>
+                  <p className="opacity-90 leading-relaxed">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ====== 板块 2/4：专业技能 ====== */}
       <section id="skills" className="py-16 px-4 bg-white">
@@ -1238,103 +1335,6 @@ print(f"MAPE：{mape:.1f}%")  # 8.3%`,
         </div>
       </section>
 
-      {/* ====== 板块 3/4：实训项目（简洁卡片，详情在独立页面） ====== */}
-      <section id="projects" className="py-16 px-4 bg-gradient-to-b from-white to-blue-50">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold text-center mb-3 text-blue-800">商务数据分析训练项目</h2>
-          <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-            10 个核心项目，每个都包含<span className="text-blue-700 font-semibold">完整教程</span> + <span className="text-green-700 font-semibold">可运行代码实训练习</span>。
-            <span className="text-amber-600 font-semibold ml-1">⭐ 标记为标杆案例</span>
-          </p>
-
-          {/* 难度筛选 */}
-          <div className="flex flex-wrap justify-center gap-2 mb-10">
-            {LEVEL_FILTERS.map((lv) => {
-              const active = activeLevel === lv;
-              return (
-                <button
-                  key={lv}
-                  onClick={() => setActiveLevel(lv)}
-                  className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
-                    active
-                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-200'
-                      : 'bg-white text-blue-700 border border-blue-200 hover:bg-blue-50'
-                  }`}
-                >
-                  {lv}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* 简洁项目卡片网格 */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
-            {projects
-              .filter((p) => activeLevel === '全部' || p.level === activeLevel)
-              .map((project) => {
-                const IconComponent = project.icon;
-                const colors = colorSchemes[project.color as keyof typeof colorSchemes];
-                return (
-                  <div
-                    key={project.id}
-                    className={`group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 flex flex-col aspect-square ring-1 ${
-                      project.isShowcase ? 'ring-amber-300' : 'ring-gray-100'
-                    }`}
-                  >
-                    {/* 上半部分：图标 + 项目名（点击进入教程）*/}
-                    <a
-                      href={`/project/${project.id}`}
-                      className={`flex-1 relative overflow-hidden bg-gradient-to-br ${colors.gradient} flex flex-col items-center justify-center p-4 hover:opacity-95 transition-opacity`}
-                    >
-                      {project.isShowcase && (
-                        <span className="absolute top-2 left-2 bg-amber-400 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow z-10">⭐</span>
-                      )}
-                      <IconComponent className="w-14 h-14 text-white drop-shadow-lg transition-transform duration-500 group-hover:scale-110" />
-                      <p className="text-white text-sm font-bold mt-2 text-center line-clamp-2">{project.name}</p>
-                      <span className="absolute top-2 right-2 bg-white bg-opacity-25 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm">
-                        {project.level}
-                      </span>
-                    </a>
-
-                    {/* 下半部分：两个入口按钮 */}
-                    <div className="flex">
-                      <a
-                        href={`/project/${project.id}`}
-                        className="flex-1 text-xs bg-blue-50 text-blue-700 py-2 font-medium hover:bg-blue-100 transition-colors border-r border-blue-100 text-center"
-                      >
-                        📖 教程
-                      </a>
-                      <a
-                        href={`/practice/${project.id}`}
-                        className="flex-1 text-xs bg-green-50 text-green-700 py-2 font-medium hover:bg-green-100 transition-colors text-center"
-                      >
-                        💻 实训
-                      </a>
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
-
-          {/* 数据驱动思维小贴士 */}
-          <div className="mt-16 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 rounded-2xl p-8 text-white shadow-xl">
-            <h3 className="text-xl font-bold mb-5 text-center">💡 我的数据分析方法论</h3>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
-              {[
-                { step: '① 定义问题', text: '先理解业务目标，把「店铺下滑」拆解为「访客 × 转化 × 客单」三大指标' },
-                { step: '② 获取数据', text: '结合 POS、用户行为日志、行业报告，构建多源数据集' },
-                { step: '③ 探索建模', text: 'K-Means 聚类、关联规则、ARIMA、A/B 测试，按问题选方法' },
-                { step: '④ 行动建议', text: '「数据 + 洞察 + 可执行方案」三位一体，驱动业务决策' },
-              ].map((item, i) => (
-                <div key={i} className="bg-white bg-opacity-15 rounded-xl p-4 backdrop-blur-sm hover:bg-opacity-20 transition-colors">
-                  <p className="font-bold mb-2 text-base">{item.step}</p>
-                  <p className="opacity-90 leading-relaxed">{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* 留言板部分 */}
       <section id="guestbook" className="py-16 px-4 bg-gradient-to-b from-blue-50 to-blue-100">
