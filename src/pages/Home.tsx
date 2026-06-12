@@ -38,7 +38,6 @@ const colorSchemes: Record<string, { bg: string; text: string; gradient: string;
 export default function Home() {
   const [activeLevel, setActiveLevel] = useState<string>('全部');
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [expandedId, setExpandedId] = useState<number | null>(null);
 
   // ====== 项目数据（增强版：数据集/流程/图表/结论/代码/业务价值/收获/标杆案例）======
   const projects = [
@@ -1239,13 +1238,13 @@ print(f"MAPE：{mape:.1f}%")  # 8.3%`,
         </div>
       </section>
 
-      {/* ====== 板块 3/4：实训项目（筛选 + 展开交互 + 标杆案例） ====== */}
+      {/* ====== 板块 3/4：实训项目（简洁卡片，详情在独立页面） ====== */}
       <section id="projects" className="py-16 px-4 bg-gradient-to-b from-white to-blue-50">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl font-bold text-center mb-3 text-blue-800">商务数据分析训练项目</h2>
           <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-            从「数据清洗 → 关联分析 → 客户分群 → 时间序列预测」完整链路训练，<span className="text-blue-700 font-semibold">用真实业务数据产出可落地的数据洞察</span>。
-            <span className="text-amber-600 font-semibold ml-1">⭐ 标记为标杆案例（完整拆解）</span>
+            10 个核心项目，每个都包含<span className="text-blue-700 font-semibold">完整教程</span> + <span className="text-green-700 font-semibold">可运行代码实训练习</span>。
+            <span className="text-amber-600 font-semibold ml-1">⭐ 标记为标杆案例</span>
           </p>
 
           {/* 难度筛选 */}
@@ -1268,172 +1267,49 @@ print(f"MAPE：{mape:.1f}%")  # 8.3%`,
             })}
           </div>
 
-          {/* 项目卡片网格 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* 简洁项目卡片网格 */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
             {projects
               .filter((p) => activeLevel === '全部' || p.level === activeLevel)
               .map((project) => {
                 const IconComponent = project.icon;
                 const colors = colorSchemes[project.color as keyof typeof colorSchemes];
-                const expanded = expandedId === project.id;
                 return (
                   <div
                     key={project.id}
-                    className={`relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 flex flex-col ring-1 ${
-                      project.isShowcase ? 'ring-amber-300 shadow-amber-100' : 'ring-gray-100'
+                    className={`group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 flex flex-col aspect-square ring-1 ${
+                      project.isShowcase ? 'ring-amber-300' : 'ring-gray-100'
                     }`}
                   >
-                    {/* 顶部渐变区 */}
-                    <div className={`h-36 relative overflow-hidden bg-gradient-to-br ${colors.gradient} flex flex-col items-center justify-center`}>
+                    {/* 上半部分：图标 + 项目名（点击进入教程）*/}
+                    <a
+                      href={`/project/${project.id}`}
+                      className={`flex-1 relative overflow-hidden bg-gradient-to-br ${colors.gradient} flex flex-col items-center justify-center p-4 hover:opacity-95 transition-opacity`}
+                    >
                       {project.isShowcase && (
-                        <span className="absolute top-3 left-3 bg-amber-400 text-white text-xs font-bold px-2 py-1 rounded-full shadow">⭐ 标杆案例</span>
+                        <span className="absolute top-2 left-2 bg-amber-400 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow z-10">⭐</span>
                       )}
-                      <IconComponent className="w-14 h-14 text-white mb-2 drop-shadow" />
-                      <span className="text-white text-lg font-bold">{project.name}</span>
-                      <span className="absolute top-3 right-3 bg-white bg-opacity-25 text-white text-xs px-2 py-0.5 rounded-full backdrop-blur-sm">{project.level}</span>
-                    </div>
+                      <IconComponent className="w-14 h-14 text-white drop-shadow-lg transition-transform duration-500 group-hover:scale-110" />
+                      <p className="text-white text-sm font-bold mt-2 text-center line-clamp-2">{project.name}</p>
+                      <span className="absolute top-2 right-2 bg-white bg-opacity-25 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm">
+                        {project.level}
+                      </span>
+                    </a>
 
-                    <div className="p-5 flex flex-col flex-1">
-                      {/* 数据集信息 */}
-                      <div className={`${colors.bg} rounded-lg p-3 mb-3 border border-transparent`}>
-                        <p className={`text-xs font-semibold ${colors.text} mb-1`}>📊 数据集</p>
-                        <p className="text-gray-700 text-xs leading-relaxed">{project.dataset}</p>
-                        <p className="text-gray-400 text-[11px] mt-1 font-mono">{project.datasetFields}</p>
-                        {project.dataSample && project.dataSample.length > 0 && (
-                          <div className="mt-2 bg-white rounded border border-gray-100 text-[11px] text-gray-600 font-mono overflow-x-auto">
-                            {project.dataSample.slice(0, 3).map((row, ri) => (
-                              <div key={ri} className="px-2 py-0.5 border-b border-gray-50 last:border-0">
-                                {row}
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-
-                      {/* 分析流程（缩略）*/}
-                      <div className="mb-3">
-                        <p className="text-xs font-semibold text-gray-500 mb-1.5">⚙️ 分析流程</p>
-                        <div className="space-y-1">
-                          {project.process.slice(0, 2).map((step, i) => (
-                            <p key={i} className="text-xs text-gray-600 leading-snug">
-                              <span className={`font-semibold ${colors.text}`}>{String(i + 1)}.</span>
-                              {step.split('）').length > 1 ? step.split('）')[1] : step}
-                            </p>
-                          ))}
-                          {!expanded && project.process.length > 2 && (
-                            <p className="text-xs text-gray-400 italic">+{project.process.length - 2} 步，点击「展开详情」查看</p>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* 产出图表标签 */}
-                      <div className="mb-3">
-                        <p className="text-xs font-semibold text-gray-500 mb-1.5">📈 产出图表</p>
-                        <div className="flex flex-wrap gap-1">
-                          {project.visualizations.slice(0, 4).map((v, i) => (
-                            <span key={i} className={`${colors.bg} ${colors.text} px-2 py-0.5 rounded text-xs`}>{v.split('（')[0]}</span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* 核心结论 */}
-                      <div className="mb-3">
-                        <p className="text-xs font-semibold text-gray-500 mb-1.5">💡 核心结论</p>
-                        <div className="space-y-1">
-                          {project.conclusions.slice(0, expanded ? 4 : 2).map((c, i) => (
-                            <p key={i} className="text-xs text-gray-700 leading-relaxed flex items-start">
-                              <span className="text-green-500 mr-1 flex-shrink-0">✓</span>
-                              {c}
-                            </p>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* 业务价值高亮 */}
-                      <div className={`${colors.soft} border border-opacity-50 border-current rounded-lg p-3 mb-4`}>
-                        <p className="text-xs text-gray-700 leading-relaxed">
-                          <span className={`font-bold ${colors.text}`}>🎯 业务价值：</span>
-                          {project.businessInsight}
-                        </p>
-                      </div>
-
-                      {/* 展开区：完整流程 + 核心代码 + 收获 */}
-                      {expanded && (
-                        <div className="mb-4 rounded-xl border border-gray-200 bg-gradient-to-br from-white to-gray-50 p-4 space-y-4 animate-[fadeIn_0.3s_ease]">
-                          {/* 完整流程 */}
-                          <div>
-                            <p className={`text-sm font-bold ${colors.text} mb-2`}>📋 完整流程</p>
-                            <ol className="space-y-1.5 text-xs text-gray-700">
-                              {project.process.map((step, i) => (
-                                <li key={i} className="flex">
-                                  <span className={`${colors.text} font-semibold mr-2`}>{String(i + 1).padStart(2, '0')}</span>
-                                  <span className="leading-relaxed">{step.split('）').length > 1 ? step.split('）').slice(1).join('）') : step}</span>
-                                </li>
-                              ))}
-                            </ol>
-                          </div>
-
-                          {/* 完整图表列表 */}
-                          <div>
-                            <p className={`text-sm font-bold ${colors.text} mb-2`}>📊 可视化产出</p>
-                            <ul className="space-y-1 text-xs text-gray-700">
-                              {project.visualizations.map((v, i) => (
-                                <li key={i} className="flex items-start">
-                                  <span className={`${colors.text} mr-2`}>■</span>
-                                  {v}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-
-                          {/* 核心代码片段 */}
-                          {project.codeSnippet && (
-                            <div>
-                              <p className={`text-sm font-bold ${colors.text} mb-2`}>💻 核心代码片段</p>
-                              <pre className="bg-gray-900 text-green-400 text-[11px] leading-relaxed rounded-lg p-3 overflow-x-auto font-mono border border-gray-800">
-{project.codeSnippet}
-                              </pre>
-                            </div>
-                          )}
-
-                          {/* 学习收获 */}
-                          <div className="bg-blue-50 border border-blue-100 rounded-lg p-3">
-                            <p className="text-sm font-bold text-blue-700 mb-1">🏁 学习收获</p>
-                            <p className="text-xs text-gray-700 leading-relaxed">{project.harvest}</p>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* 技术标签 */}
-                      <div className="flex flex-wrap gap-1.5 mb-4">
-                        {project.tags.map((tag, index) => (
-                          <span key={index} className={`${colors.bg} ${colors.text} px-2 py-0.5 rounded text-xs font-medium`}>{tag}</span>
-                        ))}
-                      </div>
-
-                      {/* 展开 / 收起按钮 */}
-                      <div className="flex space-x-2 mt-auto">
-                        <button
-                          onClick={() => setExpandedId(expanded ? null : project.id)}
-                          className={`flex-1 text-center px-3 py-2 rounded-lg transition-colors text-sm font-medium border ${
-                            expanded
-                              ? 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200'
-                              : `${colors.soft} ${colors.text} border-current border-opacity-30 hover:opacity-90`
-                          }`}
-                        >
-                          {expanded ? '收起详情 ▲' : '展开详情 ▼'}
-                        </button>
-                        <a
-                          href={`#project-${project.id}`}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setExpandedId(project.id);
-                          }}
-                          className="flex-1 text-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 rounded-lg hover:opacity-90 transition-opacity text-sm font-medium shadow-sm"
-                        >
-                          {project.isShowcase ? '⭐ 查看完整案例' : '查看教程'}
-                        </a>
-                      </div>
+                    {/* 下半部分：两个入口按钮 */}
+                    <div className="flex">
+                      <a
+                        href={`/project/${project.id}`}
+                        className="flex-1 text-xs bg-blue-50 text-blue-700 py-2 font-medium hover:bg-blue-100 transition-colors border-r border-blue-100 text-center"
+                      >
+                        📖 教程
+                      </a>
+                      <a
+                        href={`/practice/${project.id}`}
+                        className="flex-1 text-xs bg-green-50 text-green-700 py-2 font-medium hover:bg-green-100 transition-colors text-center"
+                      >
+                        💻 实训
+                      </a>
                     </div>
                   </div>
                 );
@@ -1441,25 +1317,20 @@ print(f"MAPE：{mape:.1f}%")  # 8.3%`,
           </div>
 
           {/* 数据驱动思维小贴士 */}
-          <div className="mt-14 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 rounded-2xl p-8 text-white shadow-xl">
-            <h3 className="text-xl font-bold mb-4 text-center">💡 我的数据分析方法论</h3>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-5 text-sm">
-              <div className="bg-white bg-opacity-15 rounded-xl p-4 backdrop-blur-sm">
-                <p className="font-bold mb-2 text-lg">① 定义问题</p>
-                <p className="opacity-90 leading-relaxed">先理解业务目标，把「店铺下滑」拆解为「访客 × 转化 × 客单」三大指标，找到真正症结</p>
-              </div>
-              <div className="bg-white bg-opacity-15 rounded-xl p-4 backdrop-blur-sm">
-                <p className="font-bold mb-2 text-lg">② 获取数据</p>
-                <p className="opacity-90 leading-relaxed">结合 POS 系统、用户行为日志、行业报告，构建多源数据集；清洗缺失值、处理异常值</p>
-              </div>
-              <div className="bg-white bg-opacity-15 rounded-xl p-4 backdrop-blur-sm">
-                <p className="font-bold mb-2 text-lg">③ 探索建模</p>
-                <p className="opacity-90 leading-relaxed">K-Means 聚类、关联规则、时间序列 ARIMA、A/B 测试，根据问题选择合适方法</p>
-              </div>
-              <div className="bg-white bg-opacity-15 rounded-xl p-4 backdrop-blur-sm">
-                <p className="font-bold mb-2 text-lg">④ 行动建议</p>
-                <p className="opacity-90 leading-relaxed">用业务语言输出结论与建议，「数据 + 洞察 + 可执行方案」三位一体，让分析真正驱动决策</p>
-              </div>
+          <div className="mt-16 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 rounded-2xl p-8 text-white shadow-xl">
+            <h3 className="text-xl font-bold mb-5 text-center">💡 我的数据分析方法论</h3>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+              {[
+                { step: '① 定义问题', text: '先理解业务目标，把「店铺下滑」拆解为「访客 × 转化 × 客单」三大指标' },
+                { step: '② 获取数据', text: '结合 POS、用户行为日志、行业报告，构建多源数据集' },
+                { step: '③ 探索建模', text: 'K-Means 聚类、关联规则、ARIMA、A/B 测试，按问题选方法' },
+                { step: '④ 行动建议', text: '「数据 + 洞察 + 可执行方案」三位一体，驱动业务决策' },
+              ].map((item, i) => (
+                <div key={i} className="bg-white bg-opacity-15 rounded-xl p-4 backdrop-blur-sm hover:bg-opacity-20 transition-colors">
+                  <p className="font-bold mb-2 text-base">{item.step}</p>
+                  <p className="opacity-90 leading-relaxed">{item.text}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
